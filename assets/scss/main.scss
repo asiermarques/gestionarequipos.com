@@ -1,0 +1,172 @@
+$black: #222;
+$primary: #b24d1e;
+$secondary: #1B2E4B;
+$blue: #1B2E4B;
+$light-blue: opacify($blue, 0.1);
+$white: #f7f6f7;
+$beige: #eadec3;
+$font-size-base: 1.6rem;
+$space: 4rem;
+$enable-rounded: false;
+$radius: 0;
+$font-family-base: "Roboto", sans-serif;
+
+@import "../../vendor/bootstrap/scss/bootstrap";
+
+section, header{
+    padding: $space 0;
+}
+header#presentation {
+    text-align: center;
+    h1 {
+        font-weight: lighter;
+    }
+    background: #fff;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, $white, #fff);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, $white, #fff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+ul.nav{
+    flex-direction: column!important;
+    text-align: center;
+    @include media-breakpoint-up(sm) {
+        flex-direction: unset!important;
+        text-align: justify;
+    }
+}
+
+section#libro {
+    background: #fff;
+    color: $blue;
+    p{
+        color: $black;
+    }
+    span{
+        margin-top: 1rem;
+        color: $black;
+    }
+    h2 {
+        font-weight: lighter;
+        margin-top: 1rem;
+    }
+    a.cover {
+        text-align: right;
+        display: block;
+        img {
+            max-width: 100%;
+            height: auto;
+            max-height: 500px;
+        }
+    }
+    @include media-breakpoint-down(sm) {
+        a.cover {
+            text-align: center;
+            margin-top: $space/2;
+        }
+    }
+
+}
+section#libro-contenido{
+    padding: $space 0;
+    background: $secondary;
+    background: #0f2027; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, $secondary, #203a43, #2c5364); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right,  $secondary, #2c5364); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: $white;
+    .contenido{
+        text-align: center;
+    }
+    .contenido{
+        h4{
+            font-weight: lighter;
+            font-size: $font-size-base*1.2;
+            margin: 0;
+        }
+        text-align: center;
+        font-size: $font-size-base/1.4;
+        .block{
+            padding: $space/2;
+            background: $blue;
+            color: $white;
+            margin-top: $space/2.5;
+            min-height: 200px;
+            strong{
+                color: $gray-300;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                font-weight: 300;
+            }
+            .list-group{
+                margin-top: $space/4;
+                .list-group-item{
+                    background-color: transparent;
+                    border: none;
+                    color: $gray-500;
+                    margin-bottom: 1rem;
+                    font-weight: normal;
+                }
+            }
+        }
+    }
+}
+#newsletter {
+    text-align: left;
+    .logo{
+        text-align: right;
+    }
+    @include media-breakpoint-down(sm) {
+        text-align: center;
+        .logo{
+            text-align: center;
+        }
+    }
+    background-color: white;
+    padding: $space 0;
+    a{
+        :hover{
+            color: $primary;
+        }
+        display: block;
+        text-decoration: none;
+        img{
+            width: 150px;
+        }
+        h5 {
+            font-weight: lighter;
+        }
+        .card{
+            background-color: $white;
+            border: none;
+            small{
+                font-weight: lighter;
+            }
+        }
+    }
+}
+
+#autor{
+
+    background: $white;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, $white, #fff);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, $white, #fff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    .asier-picture{
+        margin-bottom: $space/2;
+    }
+    @include media-breakpoint-down(md) {
+        .asier-picture{
+            text-align: center;
+        }
+    }
+
+    h4{
+        margin-bottom: $space/2;
+        font-weight: lighter;
+        text-align: center;
+    }
+    p{
+        font-size: $font-size-base/1.4
+    }
+    img{
+        filter: grayscale(30%);
+    }
+}

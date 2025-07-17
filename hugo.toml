@@ -1,0 +1,4 @@
+baseURL = 'https://gestionarequipos.com/'
+languageCode = 'es'
+title = "Gestionar equipos"
+description = 'Recursos sobre gestión de equipos en español'
