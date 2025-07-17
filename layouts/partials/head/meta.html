@@ -7,7 +7,11 @@
 {{ if not (.IsHome)}}{{ $description = .Params.description }}{{ end }}
 <title>{{ $title }}</title>
 <link rel="canonical" href="{{ .Permalink }}" />
-<link rel="icon" href="/img/logo_social.png" />
+{{ with resources.Get "/img/logo_social.png" }}
+  {{ with .Resize (printf "%dx webp q70 lanczos" .Width) }}
+    <link rel="icon" href="{{.Permalink}}" />
+  {{end}}
+{{end}}
 <meta property="og:title" content="{{ $title }}" />
 <meta name="twitter:title" content="{{ $title }}" />
 <meta itemprop="name" content="{{ $title }}" />
