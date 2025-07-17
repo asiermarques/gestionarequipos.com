@@ -4,7 +4,12 @@
         <div class="row">
 
             <div class="col-6 offset-3 col-lg-2 offset-lg-2 asier-picture">
-                <img src="/img/file.png" alt="" class="img-thumbnail">
+
+                {{ with resources.Get "img/file.png" }}
+                {{ with .Resize (printf "%dx webp q70 lanczos" .Width) }}
+                <img src="{{.Permalink}}" alt="Asier Marqués" class="img-thumbnail">
+                {{end}}
+                {{end}}
             </div>
             <div class="col-12 col-lg-6">
                 <p>Llevo cerca de dos décadas liderando equipos y proyectos en el mundo tecnológico, combinando la gestión de personas con la estrategia tecnológica</p>

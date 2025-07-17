@@ -9,7 +9,12 @@
 
             </div>
             <div class="col-12 col-lg-4">
-                <a href="" class="cover"><img src="/img/portada.png"/></a>
+                {{ with resources.Get "img/portada.png" }}
+                  {{ with .Resize (printf "%dx webp q70 lanczos" .Width) }}
+                     <a href="#"
+                        class="cover"><img src="{{.Permalink}}"/></a>
+                  {{end}}
+                {{end}}
             </div>
         </div>
 
