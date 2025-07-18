@@ -26,4 +26,11 @@
   p{
     font-size: $font-size-base/1.4
   }
+  p.authorLinks{
+    color: $gray-600;
+    a{
+      margin-right: 4px;
+      text-decoration: none;
+    }
+  }
 }
