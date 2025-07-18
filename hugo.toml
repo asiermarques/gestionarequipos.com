@@ -1,6 +1,6 @@
 baseURL = 'https://gestionarequipos.com/'
 languageCode = 'es'
-title = "Gestionar equipos"
+title = "Gestionar Equipos"
 
 [params]
 description = 'Recursos e ideas sobre gestión de equipos en español'
