@@ -5,7 +5,7 @@
 
             <div class="col-6 offset-3 col-lg-2 offset-lg-2 asier-picture">
 
-                {{ with resources.Get "img/file.png" }}
+                {{ with resources.Get "img/asier.jpeg" }}
                 {{ with .Resize (printf "%dx webp q70 lanczos" .Width) }}
                 <img src="{{.Permalink}}" alt="Asier Marqués" class="img-thumbnail">
                 {{end}}

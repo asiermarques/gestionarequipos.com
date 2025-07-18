@@ -1,0 +1,29 @@
+section, header{
+  padding: $space 0;
+}
+header#presentation {
+  text-align: center;
+  h1 {
+    font-weight: lighter;
+    span{
+      display: inline;
+    }
+    @include media-breakpoint-down(sm) {
+      span{
+        display: block;
+        font-size: $font-size-base*1.2;
+      }
+    }
+  }
+  background: #fff;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, $white, #fff);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, $white, #fff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+ul.nav{
+  flex-direction: unset!important;
+  text-align: justify;
+  @include media-breakpoint-down(sm) {
+    flex-direction: column!important;
+    text-align: center;
+  }
+}

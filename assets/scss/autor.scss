@@ -1,0 +1,29 @@
+#autor{
+
+  background: $white;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, $white, #fff);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, $white, #fff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  .asier-picture{
+    margin-bottom: $space/2;
+    .img-thumbnail{
+      background: #fff;
+      border: none;
+      filter: grayscale(40%);
+    }
+  }
+  @include media-breakpoint-down(md) {
+    .asier-picture{
+      text-align: center;
+    }
+  }
+
+  h4{
+    margin-bottom: $space/2;
+    font-weight: lighter;
+    text-align: center;
+  }
+  p{
+    font-size: $font-size-base/1.4
+  }
+}

@@ -1,0 +1,86 @@
+section#libro {
+  background: #fff;
+  color: $blue;
+  p{
+    color: $black;
+  }
+  span{
+    margin-top: 1rem;
+    color: $black;
+  }
+  h2 {
+    font-weight: lighter;
+    margin-top: 1rem;
+  }
+  a.cover {
+    text-align: right;
+    display: block;
+    img {
+      max-width: 100%;
+      height: auto;
+      max-height: 500px;
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    a.cover {
+      text-align: center;
+      margin-top: $space/2;
+    }
+  }
+
+  p.meanwhile{
+      color: $gray-600;
+  }
+
+}
+section#libro-contenido{
+  padding: $space 0;
+  background: $secondary;
+  background: #0f2027; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, $secondary, #203a43, #2c5364); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right,  $secondary, #2c5364); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: $white;
+  .contenido{
+    text-align: center;
+  }
+  .contenido{
+    h4{
+      font-weight: lighter;
+      font-size: $font-size-base*1.2;
+      margin: 0;
+    }
+    text-align: center;
+    font-size: $font-size-base/1.4;
+    .block{
+      min-height: 480px;
+      @include media-breakpoint-down(sm) {
+        min-height: 0;
+      }
+      padding: $space/2;
+      background: $blue;
+      color: $white;
+      margin-top: $space/2.5;
+      strong{
+        color: $gray-300;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 300;
+        margin-top: $space/3;
+        @include media-breakpoint-down(sm) {
+          margin-top: 0;
+        }
+        display: block;
+      }
+      .list-group{
+        margin-top: $space/4;
+        .list-group-item{
+          background-color: transparent;
+          border: none;
+          color: $gray-500;
+          margin-bottom: 1rem;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+}
