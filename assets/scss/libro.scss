@@ -1,5 +1,6 @@
 section#libro {
-  background: #fff;
+  background: $white;
+  border-top: 1px solid $gray-300;
   color: $blue;
   p{
     color: $black;
@@ -21,7 +22,7 @@ section#libro {
       max-height: 500px;
     }
   }
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-down(md) {
     a.cover {
       text-align: center;
       margin-top: $space/2;
