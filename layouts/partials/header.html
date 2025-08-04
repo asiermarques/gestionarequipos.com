@@ -4,14 +4,19 @@
 </header>
 <ul class="nav justify-content-center">
     <li class="nav-item">
-        <a class="nav-link active"
+        <a class="nav-link"
            aria-current="page"
-           href="#libro">El Libro</a>
+           href="/#libro">El Libro</a>
     </li>
     <li class="nav-item">
         <a title="Newsletter Gestionar Equipos"
            class="nav-link"
            href="https://newsletter.gestionarequipos.com/">La Newsletter</a>
+    </li>
+    <li class="nav-item">
+        <a title="Biblioteca de recursos"
+           class="nav-link {{ if eq .RelPermalink "/recursos/" }}active{{ end }}"
+           href="/recursos">Recursos</a>
     </li>
     <li class="nav-item">
         <a title="Asier Marqués"

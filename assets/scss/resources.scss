@@ -1,0 +1,38 @@
+#resources-detail, #resources-summary{
+  h2{
+
+  }
+  .book-item-container{
+    margin-bottom: $space/4;
+  }
+  .card-img-top{
+    width: 100%;
+    height: auto;
+    max-height: 460px;
+    @include media-breakpoint-down(md) {
+      max-height: none;
+    }
+  }
+  p.description{
+    margin-bottom: $space/2;
+  }
+  a.book-item{
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    border: none;
+  }
+  h5{
+    font-size: $font-size-base/1.2;
+  }
+  .authors{
+    font-size: $font-size-base/1.4;
+  }
+}
+
+#resource-detail{
+  .description{
+    margin-bottom: $space/2;
+  }
+}
+

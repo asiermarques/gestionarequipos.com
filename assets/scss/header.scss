@@ -26,4 +26,8 @@ ul.nav{
     flex-direction: column!important;
     text-align: center;
   }
+  a.active{
+    border-bottom: 2px solid $primary;
+    color: $secondary;
+  }
 }

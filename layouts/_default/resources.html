@@ -1,0 +1,20 @@
+{{ define "main" }}
+
+<section id="resources-detail" style="background: #fff;">
+    <div class="container">
+        <h2>Biblioteca</h2>
+        <p class="description">Lecturas recomendadas sobre <strong>gestión y liderazgo de equipos</strong></p>
+        <div class="row shelve">
+            {{ range where .Site.Pages "Type" "book"}}
+            {{ partial "resources/book-item.html" . }}
+            {{ end }}
+        </div>
+    </div>
+
+</section>
+
+{{ partial "newsletter.html" . }}
+
+{{ end }}
+
+
