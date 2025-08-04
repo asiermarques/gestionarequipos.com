@@ -1,5 +1,5 @@
 +++
-title = "Cambia de rumbo el barco"
+title = "Cambia el barco de rumbo"
 type = "book"
 layout = "book"
 authors = ["David Marquet"]
