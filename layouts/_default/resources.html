@@ -3,7 +3,8 @@
 <section id="resources-detail" style="background: #fff;">
     <div class="container">
         <h2>Biblioteca</h2>
-        <p class="description">Lecturas recomendadas sobre <strong>gestión y liderazgo de equipos</strong></p>
+        <p class="description">Me apasiona leer libros sobre <strong>gestión y liderazgo de equipos</strong>.<br>
+            Esta es una selección de los que ocupan un lugar especial en mi biblioteca y no me canso de recomendar.</p>
         <div class="row shelve">
             {{ range where .Site.Pages "Type" "book"}}
             {{ partial "resources/book-item.html" . }}
