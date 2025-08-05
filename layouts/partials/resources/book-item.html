@@ -4,12 +4,14 @@
     <a href="{{.Permalink}}#resource-detail"
        title="{{.Title}}"
        class="card book-item" >
-        {{ with resources.Get .Params.image }}
-        {{ with .Resize (printf "%dx webp q70 lanczos" .Width) }}
-        <img src="{{.Permalink}}"
-             class="card-img-top"/>
-        {{end}}
-        {{end}}
+        <div class="cover">
+            {{ with resources.Get .Params.image }}
+            {{ with .Resize (printf "%dx webp q70 lanczos" .Width) }}
+            <img src="{{.Permalink}}"
+                 class="card-img-top"/>
+            {{end}}
+            {{end}}
+        </div>
         <div class="card-body">
             <h5 class="card-title">{{.Title}}</h5>
             <p class="authors">{{delimit .Params.authors  ", " }}</p>

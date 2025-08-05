@@ -3,16 +3,9 @@
 
   }
   .book-item-container{
-    margin-bottom: $space/4;
+    margin-bottom: $space/2;
   }
-  .card-img-top{
-    width: 100%;
-    height: auto;
-    max-height: 460px;
-    @include media-breakpoint-down(md) {
-      max-height: none;
-    }
-  }
+
   p.description{
     margin-bottom: $space/2;
   }
@@ -21,6 +14,29 @@
     text-align: center;
     display: block;
     border: none;
+    .cover{
+      height: 460px;
+      display: table-cell;
+      background: $black;
+      vertical-align: middle;
+      @include media-breakpoint-down(xxl) {
+        height: 380px;
+      }
+      @include media-breakpoint-down(xl) {
+        height: 460px;
+      }
+      @include media-breakpoint-down(lg) {
+        height: auto;
+      }
+      .card-img-top{
+        width: 100%;
+        height: auto;
+        max-height: 460px;
+        @include media-breakpoint-down(lg) {
+          max-height: none;
+        }
+      }
+    }
   }
   h5{
     font-size: $font-size-base/1.2;

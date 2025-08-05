@@ -4,6 +4,7 @@
     <div class="container">
         <p><a href="/recursos" class="back">← volver a la biblioteca</a></p>
         <h2>{{.Title}}</h2>
+        <p class="authors">{{delimit .Params.authors  ", " }}</p>
         <div class="row">
             <div class="col-md-12 col-lg-8 description">
                 {{.Content}}
