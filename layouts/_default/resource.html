@@ -1,0 +1,39 @@
+{{ define "main" }}
+
+<section id="resource-detail" style="background: #fff;">
+    <div class="container">
+        <p><a href="/recursos" class="back">← volver a la biblioteca</a></p>
+        <h2>{{.Title}}</h2>
+        <p class="authors">{{delimit .Params.authors  ", " }}</p>
+        {{ if .Params.link }}
+        <hr>
+        <a href="{{.Params.link}}"
+           target="_blank"
+           class="btn btn-primary block">Ir al recurso →</a>
+        <hr>
+        {{end}}
+        <div class="row">
+            <div class="col-md-12 col-lg-8 description">
+                {{.Content}}
+            </div>
+            <div class="col-md-12 col-lg-3 offset-lg-1">
+                {{ with resources.Get .Params.image }}
+                {{ with .Resize (printf "%dx webp q70 lanczos" .Width) }}
+                <img src="{{.Permalink}}" class="img-fluid cover"/>
+                {{end}}
+                {{end}}
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+{{ partial "newsletter.html" . }}
+
+{{ end }}
+
+
