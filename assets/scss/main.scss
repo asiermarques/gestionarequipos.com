@@ -10,8 +10,11 @@ $space: 4rem;
 $enable-rounded: false;
 $radius: 0;
 $font-family-base: "Mulish", sans-serif;
-
 @import "../../vendor/bootstrap/scss/bootstrap";
+section, header{
+  padding: $space 0 $space/2 0;
+}
+
 @import "header";
 @import "libro";
 @import "newsletter";
