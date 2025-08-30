@@ -2,10 +2,14 @@ section, header{
   padding: $space 0 $space/2 0;
 }
 header#presentation {
+  padding-top: $space/4;
   text-align: center;
   h1 {
-    font-weight: lighter;
+    font-weight: normal;
+    font-size: $font-size-base;
+    color: $secondary;
     span{
+      font-weight: normal;
       display: inline;
     }
     @include media-breakpoint-down(sm) {
@@ -13,6 +17,12 @@ header#presentation {
         display: block;
         font-size: $font-size-base*1.2;
       }
+    }
+  }
+  a.logo{
+    img{
+      width: 400px;
+      height: auto;
     }
   }
   background: #fff;  /* fallback for old browsers */

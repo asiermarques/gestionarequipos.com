@@ -7,7 +7,7 @@
 {{ if not (.IsHome)}}{{ $description = .Params.description }}{{ end }}
 <title>{{ $title }}</title>
 <link rel="canonical" href="{{ .Permalink }}" />
-{{ with resources.Get "/img/logo_social.png" }}
+{{ with resources.Get "/img/favicon.png" }}
   {{ with .Resize (printf "%dx webp q70 lanczos" .Width) }}
     <link rel="icon" href="{{.Permalink}}" />
   {{end}}

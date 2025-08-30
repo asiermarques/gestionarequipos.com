@@ -1,6 +1,11 @@
 <header id="presentation">
-    <h1><span>Hola, </span>soy Asier Marqués</h1>
-    <p>En este espacio comparto recursos sobre <strong>gestionar equipos</strong></p>
+    <a href="/" class="logo" title="{{ .Site.Title }}">
+        {{ with resources.Get "img/logo.png" }}
+        {{ with .Resize (printf "%dx webp q70 lanczos" .Width) }}
+        <img src="{{.Permalink}}" class="img-fluid rounded-start">
+        {{end}}
+        {{end}}
+    </a>
 </header>
 <ul class="nav justify-content-center">
     <li class="nav-item">
