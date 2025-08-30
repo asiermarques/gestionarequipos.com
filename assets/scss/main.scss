@@ -9,12 +9,14 @@ $font-size-base: 1.6rem;
 $space: 4rem;
 $enable-rounded: false;
 $radius: 0;
+
 $font-family-base: "Mulish", sans-serif;
+$headings-font-family: "Aleo", serif;
+
 @import "../../vendor/bootstrap/scss/bootstrap";
 section, header{
   padding: $space 0 $space/2 0;
 }
-
 @import "header";
 @import "libro";
 @import "newsletter";

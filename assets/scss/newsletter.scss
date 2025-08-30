@@ -12,7 +12,6 @@
   background-color: white;
   padding: $space 0;
   a{
-
     :hover{
       color: $primary;
     }
@@ -20,7 +19,7 @@
     text-decoration: none;
 
     h5 {
-      font-weight: lighter;
+      color: $primary;
     }
     .card{
       padding: 1rem 0 1rem 0;
