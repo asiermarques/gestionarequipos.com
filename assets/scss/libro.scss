@@ -55,7 +55,8 @@ section#libro-contenido{
   }
   .contenido{
     h4{
-      font-weight: lighter;
+      font-weight: 300;
+      opacity: .8;
       font-size: $font-size-base*1.2;
       margin: 0 0 1rem 0;
     }
