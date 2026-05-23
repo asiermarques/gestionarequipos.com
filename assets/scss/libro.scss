@@ -238,9 +238,19 @@ section#libro {
   }
 
   // ─── Portada flotando sobre soporte beige tenue ────────────────────
+  .cover-note {
+    display: block;
+    margin-top: 0.5rem;
+    font-family: $font-family-base;
+    font-size: 0.72rem;
+    font-style: italic;
+    color: rgba($cream, 0.4);
+  }
+
   .cover-col {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     padding-top: 2.75rem;
 
