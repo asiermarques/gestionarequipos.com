@@ -1,0 +1,72 @@
+// ─── Site footer — Mobile First ───────────────────────────────────────────────
+.site-footer {
+  padding: 2.75rem 0 2rem;
+  background: $navy-deep;
+  color: rgba($cream, 0.72);
+  border-top: 3px solid $primary;
+
+  @include media-breakpoint-up(lg) { padding: 3.25rem 0 2.25rem; }
+
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+
+    @include media-breakpoint-up(md) {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2.5rem;
+    }
+  }
+
+  .footer-brand {
+    max-width: 32ch;
+
+    .footer-title {
+      font-family: $headings-font-family;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: $cream;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: color 0.2s ease;
+
+      &:hover { color: $terracotta-light; }
+    }
+
+    .footer-tagline {
+      margin: 0.4rem 0 0;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: rgba($cream, 0.55);
+    }
+  }
+
+  .footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.5rem;
+
+    a {
+      font-family: $font-family-base;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba($cream, 0.7);
+      text-decoration: none;
+      transition: color 0.2s ease;
+
+      &:hover { color: $terracotta-light; }
+    }
+  }
+
+  .footer-bottom {
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba($beige, 0.12);
+    font-size: 0.78rem;
+    color: rgba($cream, 0.45);
+  }
+}

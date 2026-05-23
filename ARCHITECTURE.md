@@ -8,10 +8,10 @@ Hugo site for curating team management and leadership resources (books). Spanish
 
 | Concern | Tool |
 |---|---|
-| SSG | Hugo 0.134.1 |
+| SSG | Hugo 0.161.0 extended (built with ≥ 0.134) |
 | CSS | SCSS → Hugo native compiler (libsass) |
 | CSS framework | Bootstrap 5 (git submodule at `vendor/bootstrap/`) |
-| Fonts | Google Fonts CDN — Aleo (serif, headings) / Mulish (sans-serif, body) |
+| Fonts | Google Fonts CDN — Aleo + Mulish (whole site); Bebas Neue + Cormorant Garamond (hero "cover" block only) |
 | Images | Hugo image processing → webp, q70, Lanczos |
 | JS | None |
 | Deployment | Netlify (`hugo --minify`) |
@@ -28,12 +28,13 @@ assets/
   img/                  # Source images (logo, favicons, author, book covers)
     resources/          # Book cover images
   scss/
-    main.scss           # Entry point — Bootstrap import + all partials
+    main.scss           # Entry point — tokens, Bootstrap import + all partials
     header.scss
     libro.scss
     newsletter.scss
     autor.scss
     resources.scss
+    footer.scss
 content/
   recursos/
     _index.md           # Library landing (layout = 'resources')
@@ -49,10 +50,11 @@ layouts/
   partials/
     head.html
     head/
-      meta.html         # All SEO meta, OG, JSON-LD
+      meta.html         # SEO meta, OG, Twitter, canonical, favicon, feeds
+      schema.html       # JSON-LD structured data
       css.html          # SCSS compilation + Google Fonts
     header.html         # Nav bar
-    footer.html         # Author bio + social links
+    footer.html         # Author bio + social links + slim site footer
     libro.html          # Homepage hero section
     newsletter.html     # Newsletter CTA card
     resources-summary.html  # Latest 4 books (used on homepage)
@@ -140,10 +142,16 @@ baseof.html
        └─ resource.html      → single resource detail
 
 partials always loaded:
-  head.html → head/meta.html + head/css.html
+  head.html → head/meta.html + head/schema.html + head/css.html
   header.html
-  footer.html
+  footer.html (author bio + site footer)
 ```
+
+`book.html` and `resource.html` share one layout shell (`#resource-detail`): a
+`.resource-cover` column + a content column with `.resource-label`, an `<h1>`
+title, `.authors-line`, and `.description`. `resource.html` adds a `.resource-link`
+button when the front matter has a `link`. Keep these class names — the styling in
+`resources.scss` depends on them, and the `<h1>` is the page's only top-level heading.
 
 ---
 
@@ -152,19 +160,32 @@ partials always loaded:
 Defined in `assets/scss/main.scss`:
 
 ```scss
-$black:              #222;
-$primary:            #aa4c26;   // rust / terracotta
-$secondary:          #1B2E4B;   // dark blue
-$white:              #f7f6f7;   // off-white background
-$beige:              #eadec3;
-$font-size-base:     1.6rem;
-$space:              4rem;
-$enable-rounded:     false;
-$font-family-base:   "Mulish", sans-serif;
+// Color
+$black:            #1a1a1a;
+$primary:          #aa4c26;   // terracotta (accent)
+$secondary:        #1B2E4B;   // navy
+$white:            #f7f6f7;
+$beige:            #eadec3;
+$beige-dark:       #d4c5a3;
+$cream:            #faf8f4;    // main background
+$navy-deep:        #0f1e32;
+$terracotta-light: #c8694a;
+$terracotta-pale:  #f3e8e2;
+
+// Type
+$font-size-base:       1rem;
+$font-family-base:     "Mulish", sans-serif;
 $headings-font-family: "Aleo", serif;
+$font-display:         "Bebas Neue", sans-serif;        // hero title only
+$font-serif-cover:     "Cormorant Garamond", serif;     // hero subtitle/byline only
+
+// Shape
+$enable-rounded:   false;
+$radius:           0;
+$space:            5rem;
 ```
 
-Bootstrap variables are set **before** the Bootstrap import so they override defaults.
+Bootstrap variables are set **before** the Bootstrap import so they override defaults. See `DESIGN.md` for how these tokens are meant to be used (accent rules, contrast, background rhythm).
 
 Production build: CSS is compressed and fingerprinted. Dev: source maps enabled.
 

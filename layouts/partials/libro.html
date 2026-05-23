@@ -4,7 +4,7 @@
     <span class="hero-grain" aria-hidden="true"></span>
     <div class="container">
         <div class="row align-items-lg-center hero-row">
-            <div class="col-lg-7 col-xl-8">
+            <div class="col-lg-7 col-xl-7">
                 <span class="libro-label">Mi Libro</span>
                 <h2 class="hero-title"><span class="hero-title-name">Efectivos</span></h2>
 
@@ -28,7 +28,7 @@
                 <span class="cover-note">*portada provisional</span>
 
             </div>
-            <div class="col-lg-5 col-xl-4 cover-col">
+            <div class="col-lg-5 col-xl-5 cover-col">
                 {{ with resources.Get "img/portada.jpeg" }}
                   {{ with .Resize (printf "%dx webp q70 lanczos" .Width) }}
                      <a href="#" class="cover"><img src="{{.RelPermalink}}" alt="Portada del libro Efectivos, de Asier Marqués"/></a>

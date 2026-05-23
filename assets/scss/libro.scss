@@ -284,13 +284,17 @@ section#libro {
       display: block;
       max-width: 100%;
       height: auto;
-      max-height: 560px;
+      max-height: 680px;
       box-shadow:
         0 40px 90px rgba(#000, 0.55),
         0 12px 28px rgba(#000, 0.4);
 
+      @include media-breakpoint-up(xl) {
+        max-height: 760px;
+      }
+
       @include media-breakpoint-down(lg) {
-        max-height: 400px;
+        max-height: 440px;
         margin: 0 auto;
       }
     }

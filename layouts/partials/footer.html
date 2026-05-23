@@ -35,3 +35,23 @@
         </div>
     </div>
 </section>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="/" class="footer-title">{{ .Site.Title }}</a>
+                <p class="footer-tagline">{{ .Site.Params.description }}</p>
+            </div>
+            <nav class="footer-nav" aria-label="Pie de página">
+                <a href="/#libro">El Libro</a>
+                <a href="/recursos">Recursos</a>
+                <a href="/#autor">El Autor</a>
+                <a href="https://newsletter.gestionarequipos.com/">Newsletter</a>
+            </nav>
+        </div>
+        <div class="footer-bottom">
+            <span>© {{ now.Year }} {{ .Site.Params.author }}</span>
+        </div>
+    </div>
+</footer>

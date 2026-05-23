@@ -18,7 +18,9 @@ Tokens definidos en `assets/scss/main.scss`.
 | `$beige` | `#eadec3` | Apoyo cálido neutro |
 | `$beige-dark` | `#d4c5a3` | Bordes/marcos sobre beige |
 | `$black` | `#1a1a1a` | Texto cuerpo |
-| `$navy-deep` | `#0f1e32` | Sombras, gradiente de la sección oscura |
+| `$navy-deep` | `#0f1e32` | Sombras, gradiente de la sección oscura, fondo del footer |
+| `$terracotta-light` | `#c8694a` | Terracota más claro para texto/enlaces sobre fondo oscuro (mejor contraste que `$primary`) |
+| `$terracotta-pale` | `#f3e8e2` | Terracota muy desaturado (lavados/fondos sutiles) |
 
 ### Regla de oro del acento
 
@@ -46,14 +48,17 @@ El beige es el color que más "calidez de papel" aporta. Úsalo para romper la a
 Las secciones alternan fondos para crear ritmo vertical:
 
 ```
-hero #libro          → navy profundo (mundo de la portada: radial 50%/-10%, #1c3354 → secondary → navy-deep)
-#libro-contenido     → navy (gradiente 145deg: #0f1e32 → secondary → #1e3a5f)
-#recursos / summary  → cream
-#autor               → beige
-#newsletter          → cream, con tarjeta interior navy
+hero #libro             → navy profundo (mundo de la portada: radial 50%/-10%, #1c3354 → secondary → navy-deep)
+#libro-contenido        → navy (gradiente 145deg: #0f1e32 → secondary → #1e3a5f)
+#resources-summary      → blanco (#fff) / #resources-detail → cream
+#newsletter             → cream, con tarjeta interior navy
+#autor                  → beige
+.site-footer            → navy profundo, con borde superior terracota de 3px
 ```
 
-**Excepción deliberada al ritmo:** el hero y la sección de temas son ambos oscuros y forman un único "mundo del libro" inmersivo que replica la cubierta. Se separan con un hairline `rgba($beige, 0.12)`. A partir de `#recursos` se recupera la alternancia con crema. Fuera de este bloque, mantén la alternancia y evita dos fondos iguales seguidos.
+**Excepción deliberada al ritmo:** el hero y la sección de temas son ambos oscuros y forman un único "mundo del libro" inmersivo que replica la cubierta. Se separan con un hairline `rgba($beige, 0.12)`. A partir de la biblioteca se recupera la alternancia con crema. Fuera de este bloque, mantén la alternancia y evita dos fondos iguales seguidos.
+
+El **footer** (navy profundo, borde superior terracota) cierra la página: tras el beige de `#autor` el salto a oscuro da un cierre con peso. Es el único navy que aparece dos veces (hero al inicio, footer al final) y eso es intencional: enmarca el documento.
 
 ---
 
@@ -87,6 +92,7 @@ Texto claro sobre navy: **no bajes de `rgba(#fff, 0.72)`** para texto pequeño (
 - **Marcos decorativos**: bloque beige translúcido desplazado tras la portada (`#libro .cover-col::before`, `rgba($beige, 0.10)` sobre el hero oscuro) y marco con borde tras la foto del autor. Patrón de "objeto sobre soporte".
 - **Byline del autor**: regla punto-guion terracota (`.author-rule`) + nombre en Cormorant, replicando el pie de la cubierta.
 - **Hover de portada/foto**: `translateY(-6px)` con transición suave.
+- **Duotono navy en las tarjetas de la biblioteca** (`a.book-item .cover-wrap::after`): en reposo las portadas se tiñen de navy (`mix-blend-mode: color`, opacidad 0.92) para que la rejilla luzca cohesionada con la paleta y no como un collage de colores dispares. Al hover/focus el velo se desvanece y revela el color real de la portada, que sube `translateY(-4px)`. **Las portadas en la página de detalle (`#resource-detail`) van a todo color, sin duotono** — ahí la portada es protagonista, no parte de una rejilla.
 
 ---
 
