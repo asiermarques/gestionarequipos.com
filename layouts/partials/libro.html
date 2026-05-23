@@ -14,13 +14,32 @@
                     <span class="sub-under">de alto rendimiento</span>
                 </p>
 
+                {{ with .Site.Params.book.updates }}
+                {{ $latest := index . 0 }}
                 <div class="availability-badge">
+                    {{ if gt (len .) 1 }}
+                    <details class="update-log">
+                        <summary>
+                            <span class="badge-text">
+                                <span class="badge-dot"></span>
+                                <span class="badge-summary-text">Actualización {{ $latest.date }}: {{ $latest.text }}</span>
+                            </span>
+                        </summary>
+                        <ul class="update-log-list">
+                            {{ range after 1 . }}
+                            <li><span class="update-date">{{ .date }}</span> {{ .text }}</li>
+                            {{ end }}
+                        </ul>
+                    </details>
+                    {{ else }}
                     <span class="badge-text">
                         <span class="badge-dot"></span>
-                        Actualización 12.2025: 60% escrito &mdash; disponible en 2026.
+                        <span class="badge-summary-text">Actualización {{ $latest.date }}: {{ $latest.text }}</span>
                     </span>
+                    {{ end }}
                     <span class="badge-subscribe"><a href="https://newsletter.gestionarequipos.com">Suscríbete</a> para ser el primero en saberlo.</span>
                 </div>
+                {{ end }}
 
                 <p class="description">Un libro que funciona como guía práctica, basada en la experiencia real, que explora las particularidades de los equipos de alto rendimiento y reúne los principios, herramientas y prácticas necesarias para liderarlos con éxito.</p>
                 <p class="description">Dirigido a quienes lideran equipos y quieren mejorar la forma de acompañar, organizar y hacer crecer a las personas con las que trabajan.</p>

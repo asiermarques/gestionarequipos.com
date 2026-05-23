@@ -15,6 +15,20 @@ subtitle = 'Principios y herramientas para gestionar equipos de alto rendimiento
 description = 'Guía práctica basada en la experiencia real que explora las particularidades de los equipos de alto rendimiento y reúne los principios, herramientas y prácticas necesarias para liderarlos con éxito.'
 inLanguage = 'es'
 
+# Log de actualizaciones del libro. La primera entrada (más reciente) se muestra
+# como resumen; el resto se despliega al hacer click. Añade nuevas arriba.
+[[params.book.updates]]
+date = '05.2026'
+text = '82% escrito — disponible en 2026.'
+
+[[params.book.updates]]
+date = '12.2025'
+text = '60% escrito, reorganización.'
+
+[[params.book.updates]]
+date = '04.2025'
+text = 'Empiezo a escribirlo.'
+
 [params.social]
 bluesky = 'https://bsky.app/profile/asiermarques.com'
 linkedin = 'https://linkedin.com/in/asier'

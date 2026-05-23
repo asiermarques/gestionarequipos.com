@@ -187,6 +187,77 @@ section#libro {
       text-underline-offset: 2px;
       &:hover { color: lighten($terracotta-light, 8%); }
     }
+
+    .update-log {
+      summary {
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        &::-webkit-details-marker { display: none; }
+      }
+
+      // Cheurón que indica que se puede desplegar; rota al abrir.
+      summary::after {
+        content: "";
+        width: 0.5rem;
+        height: 0.5rem;
+        margin-left: auto;
+        border-right: 1.5px solid rgba($cream, 0.6);
+        border-bottom: 1.5px solid rgba($cream, 0.6);
+        transform: rotate(45deg);
+        transition: transform 0.25s ease;
+        flex-shrink: 0;
+      }
+      &[open] summary::after { transform: rotate(225deg); }
+
+      .update-log-list {
+        position: relative;
+        list-style: none;
+        margin: 0.75rem 0 0;
+        padding: 0.75rem 0 0;
+        border-top: 1px solid rgba($beige, 0.18);
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+
+        // Línea vertical del timeline que conecta los puntos.
+        &::before {
+          content: "";
+          position: absolute;
+          left: 3.25px;
+          top: 1.2rem;
+          bottom: 0.55em;
+          width: 1.5px;
+          background: rgba($beige, 0.3);
+        }
+
+        li {
+          position: relative;
+          padding-left: calc(8px + 0.6rem);
+          color: rgba($cream, 0.72);
+
+          // Punto del timeline; opaco para tapar la línea a su paso.
+          &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.5em;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba($beige, 0.55);
+          }
+        }
+
+        .update-date {
+          font-weight: 700;
+          color: rgba($beige, 0.85);
+          margin-right: 0.4rem;
+        }
+      }
+    }
   }
 
   .description {
