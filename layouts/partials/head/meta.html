@@ -9,7 +9,7 @@
 <link rel="canonical" href="{{ .Permalink }}" />
 {{ with resources.Get "/img/favicon.png" }}
   {{ with .Resize (printf "%dx webp q70 lanczos" .Width) }}
-    <link rel="icon" href="{{.Permalink}}" />
+    <link rel="icon" href="{{.RelPermalink}}" />
   {{end}}
 {{end}}
 <meta property="og:title" content="{{ $title }}" />
@@ -23,7 +23,6 @@
 <meta property="og:description" content="{{ $description }}" />
 <meta name="twitter:description" content="{{ $description }}" />
 
-<base href="{{ .Permalink }}" />
 <link rel="canonical" href="{{ .Permalink }}" itemprop="url" />
 <meta name="url" content="{{ .Permalink }}" />
 <meta name="twitter:url" content="{{ .Permalink }}" />

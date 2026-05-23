@@ -1,97 +1,478 @@
+// ─── Hero / Book Section — Mobile First ───────────────────────────────────────
+// Rediseño basado en la portada del libro: campo navy profundo, título Bebas Neue
+// en terracota, subtítulo serif (Cormorant) y un abanico de sombras largas que
+// evoca los obeliscos de la cubierta.
 section#libro {
-  padding: $space 0;
-  background: $white;
-  border-top: 1px solid $gray-300;
-  color: $blue;
-  p{
-    color: $black;
+  position: relative;
+  overflow: hidden;
+  padding: 3.5rem 0 4rem;
+  color: $cream;
+  background:
+    radial-gradient(125% 100% at 50% -10%, #1c3354 0%, $secondary 38%, $navy-deep 100%);
+
+  @include media-breakpoint-up(lg) {
+    display: flex;
+    align-items: center;
+    min-height: calc(100svh - 81px); // 81px ≈ navbar sticky con logo grande de home
+    padding: 4rem 0 6rem;
   }
-  span{
-    margin-top: 1rem;
-    color: $black;
+
+  // ─── Abanico de sombras largas (motivo central de la portada) ──────
+  // Cuñas que irradian desde el centro-superior hacia abajo, alternando
+  // luz navy tenue y vacío; la cuña central se tiñe de terracota (el que destaca).
+  .hero-rays {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      conic-gradient(from 168deg at 50% -8%,
+        transparent 0deg,
+        rgba($primary, 0.10) 11deg,
+        transparent 12deg,
+        rgba(#fff, 0.035) 15deg,
+        transparent 17deg,
+        rgba(#fff, 0.05) 21deg,
+        transparent 23deg,
+        rgba($primary, 0.16) 24deg,   // haz central terracota
+        transparent 26deg,
+        rgba(#fff, 0.05) 29deg,
+        transparent 31deg,
+        rgba(#fff, 0.035) 35deg,
+        transparent 37deg,
+        rgba($primary, 0.10) 41deg,
+        transparent 52deg);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 28%, #000 78%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 28%, #000 78%, transparent 100%);
   }
-  h2 {
-    margin-top: 1rem;
-    color: $gray-700;
-    strong{
-      color: $secondary;
+
+  // Halo cálido difuso tras la portada (la luz del obelisco que destaca)
+  .hero-glow {
+    position: absolute;
+    top: 42%;
+    right: -8%;
+    width: 64vw;
+    max-width: 760px;
+    aspect-ratio: 1;
+    transform: translateY(-50%);
+    background: radial-gradient(circle, rgba($terracotta-light, 0.22) 0%, rgba($primary, 0.08) 35%, rgba($primary, 0) 68%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  // Grano sutil: textura de papel en la oscuridad
+  .hero-grain {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  }
+
+  .container { position: relative; z-index: 1; }
+
+  .libro-label {
+    display: inline-block;
+    font-family: $font-family-base;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: $beige;
+    border-bottom: 2px solid rgba($beige, 0.5);
+    padding-bottom: 0.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  // ─── Título: Bebas Neue terracota, como en la cubierta ─────────────
+  .hero-title {
+    margin: 0 0 1.25rem;
+    line-height: 0.82;
+
+    @include media-breakpoint-up(lg) {
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-title-name {
+      display: block;
+      font-family: $font-display;
+      font-weight: 400;
+      font-size: clamp(4.5rem, 17vw, 11rem);
+      color: $primary;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 30px rgba($primary, 0.25);
     }
   }
+
+  // ─── Subtítulo: una sola frase serif homogénea (voz de la cubierta) ─
+  // Toda la frase en Cormorant italic; "gestionar equipos" se distingue
+  // únicamente por color (terracota), nunca por otra tipografía o peso.
+  .hero-subtitle {
+    margin: 0 0 2rem;
+    max-width: none;
+    font-family: $font-serif-cover;
+    font-weight: 500;
+    font-style: italic;
+    font-size: clamp(1.4rem, 6vw, 1.75rem);
+    line-height: 1.45;
+    color: rgba($cream, 0.9);
+
+    .sub-over,
+    .sub-main,
+    .sub-under {
+      display: inline;
+    }
+
+    .sub-main {
+      color: $terracotta-light;
+    }
+
+    @include media-breakpoint-up(lg) {
+      max-width: 36rem;
+      margin-bottom: 2.75rem;
+      font-size: 2.2rem;
+      line-height: 1.45;
+    }
+  }
+
+  .availability-badge {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    background: rgba(#fff, 0.05);
+    border: 1px solid rgba($beige, 0.22);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: rgba($cream, 0.9);
+    line-height: 1.5;
+    margin-bottom: 1.75rem;
+
+    @include media-breakpoint-up(lg) {
+      display: flex;
+      width: 100%;
+      max-width: 36rem;
+    }
+
+    .badge-text {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+
+    .badge-subscribe {
+      padding-left: calc(8px + 0.6rem);
+      color: rgba($cream, 0.72);
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: $primary;
+      box-shadow: 0 0 0 0 rgba($primary, 0.55);
+      flex-shrink: 0;
+      margin-top: 0.35rem;
+      animation: pulse 2s infinite;
+    }
+
+    a {
+      color: $terracotta-light;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      &:hover { color: lighten($terracotta-light, 8%); }
+    }
+  }
+
+  .description {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba($cream, 0.74);
+    margin-bottom: 1rem;
+    max-width: 52ch;
+
+    @include media-breakpoint-up(lg) {
+      max-width: 36rem;
+    }
+  }
+
+  // ─── Byline del autor con la regla punto-guion de la portada ───────
+  .hero-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.75rem;
+
+    .author-rule {
+      position: relative;
+      width: 3.5rem;
+      height: 1px;
+      background: rgba($primary, 0.65);
+      flex-shrink: 0;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: $primary;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .author-name {
+      font-family: $font-serif-cover;
+      font-weight: 500;
+      font-size: 1.4rem;
+      letter-spacing: 0.04em;
+      color: rgba($cream, 0.92);
+    }
+  }
+
+  // ─── Portada flotando sobre soporte beige tenue ────────────────────
+  .cover-col {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 2.75rem;
+
+    @include media-breakpoint-up(lg) {
+      padding-top: 0;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 1.5rem;
+        right: -0.75rem;
+        bottom: -1.5rem;
+        left: 1.5rem;
+        background: rgba($beige, 0.10);
+        border: 1px solid rgba($beige, 0.22);
+        z-index: 0;
+      }
+    }
+  }
+
   a.cover {
-    text-align: right;
     display: block;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.35s ease;
+
+    &:hover { transform: translateY(-6px); }
+
     img {
+      display: block;
       max-width: 100%;
       height: auto;
-      max-height: 600px;
-    }
-  }
-  @include media-breakpoint-down(lg) {
-    a.cover {
-      text-align: center;
-      margin-top: $space/2;
+      max-height: 560px;
+      box-shadow:
+        0 40px 90px rgba(#000, 0.55),
+        0 12px 28px rgba(#000, 0.4);
+
+      @include media-breakpoint-down(lg) {
+        max-height: 400px;
+        margin: 0 auto;
+      }
     }
   }
 
-  p.description{
-    font-size: $font-size-base/1.2;
-  }
-  p.meanwhile{
-    margin-bottom: $space/2;
-    color: $gray-600;
-    font-size: $font-size-base/1.4;
+  // ─── Señal de scroll ──────────────────────────────────────────────
+  .hero-scroll {
+    position: absolute;
+    left: 50%;
+    bottom: 1.6rem;
+    transform: translateX(-50%);
+    display: none;
+    align-items: center;
+    gap: 0.55rem;
+    text-decoration: none;
+    z-index: 1;
+
+    @include media-breakpoint-up(lg) { display: inline-flex; }
+
+    .hero-scroll-text {
+      font-family: $font-family-base;
+      font-size: 0.66rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba($cream, 0.5);
+      transition: color 0.2s ease;
+    }
+
+    .hero-scroll-arrow {
+      width: 9px;
+      height: 9px;
+      border-right: 2px solid $primary;
+      border-bottom: 2px solid $primary;
+      transform: rotate(45deg);
+      animation: hero-bob 1.8s ease-in-out infinite;
+    }
+
+    &:hover .hero-scroll-text { color: $cream; }
   }
 
+  // ─── Entrada escalonada ───────────────────────────────────────────
+  .libro-label,
+  .hero-title,
+  .hero-subtitle,
+  .availability-badge,
+  .description,
+  .hero-author,
+  .cover-col {
+    opacity: 0;
+    animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .libro-label       { animation-delay: 0.05s; }
+  .hero-title        { animation-delay: 0.15s; }
+  .hero-subtitle     { animation-delay: 0.28s; }
+  .availability-badge{ animation-delay: 0.42s; }
+  .description       { animation-delay: 0.52s; }
+  .hero-author       { animation-delay: 0.62s; }
+  .cover-col         { animation-delay: 0.30s; }
 }
-section#libro-contenido{
-  padding: $space 0;
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-bob {
+  0%, 100% { transform: rotate(45deg) translate(0, 0); }
+  50%      { transform: rotate(45deg) translate(3px, 3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  section#libro {
+    .libro-label, .hero-title, .hero-subtitle,
+    .availability-badge, .description, .hero-author, .cover-col {
+      opacity: 1;
+      animation: none;
+    }
+    .hero-scroll-arrow { animation: none; }
+  }
+}
+
+// ─── Topics section ───────────────────────────────────────────────────────────
+section#libro-contenido {
+  padding: 3.5rem 0;
   background: $secondary;
-  background: #0f2027; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, $secondary, #203a43, #2c5364); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right,  $secondary, #2c5364); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  color: $white;
-  .contenido{
-    text-align: center;
+  background: linear-gradient(145deg, #0f1e32 0%, $secondary 60%, #1e3a5f 100%);
+  border-top: 1px solid rgba($beige, 0.12);
+  position: relative;
+  overflow: hidden;
+
+  @include media-breakpoint-up(lg) {
+    padding: 5rem 0;
   }
-  .contenido{
-    h4{
+
+  // Decorative circles
+  &::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: rgba($primary, 0.07);
+    pointer-events: none;
+  }
+
+  .section-intro {
+    text-align: center;
+    margin-bottom: 2.5rem;
+
+    .section-rule-center {
+      display: block;
+      width: 2.5rem;
+      height: 3px;
+      background: $primary;
+      margin: 0 auto 1.25rem;
+    }
+
+    h4 {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
       font-weight: 300;
-      opacity: .8;
-      font-size: $font-size-base*1.2;
-      margin: 0 0 1rem 0;
+      color: rgba(#fff, 0.8);
+      letter-spacing: 0.02em;
+      margin: 0;
     }
-    text-align: center;
-    font-size: $font-size-base/1.4;
-    .block{
-      min-height: 480px;
-      @include media-breakpoint-down(sm) {
-        min-height: 0;
-      }
-      padding: $space/2;
-      background: $blue;
-      color: $white;
-      margin-top: $space/2.5;
-      strong{
-        color: $gray-300;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: 300;
-        margin-top: $space/3;
-        @include media-breakpoint-down(sm) {
-          margin-top: 0;
+  }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: 1fr; // mobile: single column
+    gap: 1.25rem;
+
+    @include media-breakpoint-up(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .topic-block {
+    background: rgba(#fff, 0.04);
+    border: 1px solid rgba(#fff, 0.09);
+    border-top: 3px solid rgba($beige, 0.45);
+    padding: 1.75rem 1.5rem;
+    transition: background 0.25s ease, border-top-color 0.25s ease;
+
+    &:hover {
+      background: rgba(#fff, 0.07);
+      border-top-color: $primary; // terracota reservado al estado activo
+    }
+
+    .topic-title {
+      font-family: $font-family-base;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: $primary;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        font-size: 0.875rem;
+        line-height: 1.55;
+        color: rgba(#fff, 0.74);
+        padding: 0.6rem 0 0.6rem 1rem;
+        border-bottom: 1px solid rgba(#fff, 0.06);
+        position: relative;
+
+        &::before {
+          content: '—';
+          position: absolute;
+          left: 0;
+          color: rgba($beige, 0.6);
+          font-size: 0.75rem;
+          line-height: inherit;
         }
-        display: block;
-      }
-      .list-group{
-        margin-top: $space/4;
-        .list-group-item{
-          background-color: transparent;
-          border: none;
-          color: $gray-500;
-          margin-bottom: 1rem;
-          font-weight: normal;
-        }
+
+        &:last-child { border-bottom: none; }
       }
     }
   }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.55; transform: scale(0.8); }
 }

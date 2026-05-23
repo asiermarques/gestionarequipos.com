@@ -1,54 +1,231 @@
-#resources-detail, #resources-summary{
-  h2{
+// ─── Resources / Library — Mobile First ──────────────────────────────────────
+#resources-summary {
+  padding: 3.5rem 0;
+  background: #fff;
+  border-top: 1px solid rgba($secondary, 0.08);
 
-  }
-  .book-item-container{
-    margin-bottom: $space/2;
-  }
+  @include media-breakpoint-up(lg) { padding: 5rem 0; }
 
-  p.description{
-    margin-bottom: $space/2;
-  }
-  a.book-item{
-    text-decoration: none;
-    text-align: center;
-    display: block;
-    border: none;
-    .cover{
-      height: 460px;
-      display: table-cell;
-      background: $black;
-      vertical-align: middle;
-      @include media-breakpoint-down(xxl) {
-        height: 380px;
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2.25rem;
+
+    @include media-breakpoint-up(md) {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+    }
+
+    h2 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: $secondary;
+      margin: 0;
+      letter-spacing: -0.02em;
+
+      &::after {
+        content: '';
+        display: block;
+        width: 2.5rem;
+        height: 3px;
+        background: $primary;
+        margin-top: 0.65rem;
       }
-      @include media-breakpoint-down(xl) {
-        height: 460px;
+    }
+
+    .section-desc {
+      p {
+        font-size: 0.88rem;
+        color: rgba($black, 0.5);
+        margin: 0 0 0.25rem;
+
+        @include media-breakpoint-up(md) { text-align: right; }
       }
-      @include media-breakpoint-down(lg) {
-        height: auto;
-      }
-      .card-img-top{
-        width: 100%;
-        height: auto;
-        max-height: 460px;
-        @include media-breakpoint-down(lg) {
-          max-height: none;
-        }
+      a {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: $primary;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        text-decoration: none;
+        &:hover { color: darken($primary, 12%); }
+
+        @include media-breakpoint-up(md) { display: block; text-align: right; }
       }
     }
   }
-  h5{
-    font-size: $font-size-base/1.2;
+}
+
+#resources-detail {
+  padding: 3rem 0;
+  background: $cream;
+
+  @include media-breakpoint-up(lg) { padding: 5rem 0; }
+
+  h1 {
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    color: $secondary;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
   }
-  .authors{
-    font-size: $font-size-base/1.4;
+
+  .page-intro {
+    font-size: 0.95rem;
+    color: rgba($black, 0.58);
+    max-width: 48ch;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
   }
 }
 
-#resource-detail{
-  .description{
-    margin-bottom: $space/2;
+// ─── Book Card ────────────────────────────────────────────────────────────────
+.book-item-container { margin-bottom: 1.75rem; }
+
+a.book-item {
+  display: block;
+  text-decoration: none;
+  background: transparent;
+
+  &:hover,
+  &:focus-visible {
+    .cover-wrap {
+      box-shadow: 0 14px 36px rgba(#0f1e32, 0.2);
+      &::after { opacity: 0; }      // revela el color real al interactuar
+    }
+    .cover-wrap img { transform: translateY(-4px); }
+    .card-title { color: $primary; }
+  }
+
+  .cover-wrap {
+    position: relative;
+    background: $secondary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 2 / 3; // portrait: taller than wide
+    overflow: hidden;
+    transition: box-shadow 0.32s ease;
+
+    // Duotono navy en reposo: tiñe la portada con la paleta del sitio
+    // sin perder la luminosidad de la imagen. Se desvanece al hover.
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: $secondary;
+      mix-blend-mode: color;
+      opacity: 0.92;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.32s ease;
+    }
+  }
+
+  .card-body {
+    padding: 0.875rem 0.125rem 0.5rem;
+
+    .card-title {
+      font-family: $headings-font-family;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: $secondary;
+      margin-bottom: 0.25rem;
+      line-height: 1.3;
+      transition: color 0.2s ease;
+    }
+
+    .authors {
+      font-size: 0.78rem;
+      color: rgba($black, 0.42);
+      font-weight: 500;
+      margin: 0;
+    }
   }
 }
 
+// ─── Single Resource Detail ───────────────────────────────────────────────────
+#resource-detail {
+  padding: 3rem 0;
+  background: $cream;
+
+  @include media-breakpoint-up(lg) { padding: 5rem 0; }
+
+  .resource-cover {
+    text-align: center;
+    margin-bottom: 2.5rem;
+
+    @include media-breakpoint-up(lg) {
+      text-align: left;
+      margin-bottom: 0;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 420px;
+      height: auto;
+      box-shadow: 0 12px 40px rgba(#0f1e32, 0.18);
+    }
+  }
+
+  .resource-label {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: $primary;
+    border-bottom: 2px solid $primary;
+    padding-bottom: 0.2rem;
+    display: inline-block;
+    margin-bottom: 1.1rem;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    color: $secondary;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .authors-line {
+    font-size: 0.9rem;
+    color: rgba($black, 0.48);
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+
+  .description {
+    font-size: 0.97rem;
+    line-height: 1.8;
+    color: rgba($black, 0.72);
+    margin-bottom: 2rem;
+
+    p { margin-bottom: 1.1rem; }
+  }
+
+  .resource-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: $secondary;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.85rem 2rem;
+    text-decoration: none;
+    transition: background 0.2s ease;
+
+    &:hover { background: darken($secondary, 8%); color: #fff; }
+  }
+}

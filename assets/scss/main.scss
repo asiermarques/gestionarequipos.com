@@ -1,22 +1,92 @@
-$black: #222;
-$primary: #aa4c26;
-$secondary: #1B2E4B;
-$blue: #1B2E4B;
-$light-blue: opacify($blue, 0.1);
-$white: #f7f6f7;
-$beige: #eadec3;
-$font-size-base: 1.6rem;
-$space: 4rem;
-$enable-rounded: false;
-$radius: 0;
+// ─── Design tokens ────────────────────────────────────────────────────────────
+$black:              #1a1a1a;
+$primary:            #aa4c26;   // terracotta
+$secondary:          #1B2E4B;   // dark navy
+$white:              #f7f6f7;   // off-white
+$beige:              #eadec3;
+$beige-dark:         #d4c5a3;
+$cream:              #faf8f4;
+$navy-deep:          #0f1e32;
+$terracotta-light:   #c8694a;
+$terracotta-pale:    #f3e8e2;
 
-$font-family-base: "Mulish", sans-serif;
-$headings-font-family: "Aleo", serif;
+// ─── Bootstrap overrides (must come before import) ────────────────────────────
+$font-size-base:     1rem;
+$enable-rounded:     false;
+$radius:             0;
 
+$font-family-base:        "Mulish", sans-serif;
+$headings-font-family:    "Aleo", serif;
+$font-display:            "Bebas Neue", "Mulish", sans-serif;   // título portada
+$font-serif-cover:        "Cormorant Garamond", Georgia, serif; // subtítulo + autor portada
+$headings-font-weight:    700;
+$headings-line-height:    1.15;
+$line-height-base:        1.75;
+
+$body-bg:            $cream;
+$body-color:         $black;
+
+$link-color:         $primary;
+$link-decoration:    none;
+$link-hover-color:   darken($primary, 10%);
+
+$space: 5rem;
+
+// Bootstrap
 @import "../../vendor/bootstrap/scss/bootstrap";
-section, header{
-  padding: $space 0 $space/2 0;
+
+// ─── Global base ──────────────────────────────────────────────────────────────
+*, *::before, *::after { box-sizing: border-box; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: $black;
+  background-color: $cream;
+  -webkit-font-smoothing: antialiased;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $headings-font-family;
+  line-height: $headings-line-height;
+  color: $secondary;
+}
+
+p { line-height: $line-height-base; }
+
+a {
+  color: $primary;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  &:hover { color: darken($primary, 12%); }
+}
+
+section, header { padding: $space 0; }
+
+// ─── Utility ──────────────────────────────────────────────────────────────────
+.label-tag {
+  display: inline-block;
+  font-family: $font-family-base;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: $primary;
+  padding: 0.25rem 0;
+  border-bottom: 2px solid $primary;
+}
+
+.section-rule {
+  display: block;
+  width: 3rem;
+  height: 3px;
+  background: $primary;
+  margin-bottom: 1.5rem;
+}
+
+// ─── Partials ─────────────────────────────────────────────────────────────────
 @import "header";
 @import "libro";
 @import "newsletter";

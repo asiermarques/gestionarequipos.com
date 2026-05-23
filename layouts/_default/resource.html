@@ -19,7 +19,7 @@
             <div class="col-md-12 col-lg-3 offset-lg-1">
                 {{ with resources.Get .Params.image }}
                 {{ with .Resize (printf "%dx webp q70 lanczos" .Width) }}
-                <img src="{{.Permalink}}" class="img-fluid cover"/>
+                <img src="{{.RelPermalink}}" class="img-fluid cover"/>
                 {{end}}
                 {{end}}
 

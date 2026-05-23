@@ -1,36 +1,122 @@
-#autor{
+// ─── Author Section — Mobile First ────────────────────────────────────────────
+#autor {
+  padding: 3.5rem 0;
+  background: $beige;
+  border-top: 1px solid $beige-dark;
+  border-bottom: 1px solid $beige-dark;
 
-  background: $white;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, $white, #fff);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, $white, #fff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  @include media-breakpoint-up(lg) { padding: 5rem 0; }
 
-  .asier-picture{
-    margin-bottom: $space/2;
-    .img-thumbnail{
-      background: #fff;
-      border: none;
-      filter: grayscale(40%);
+  .autor-label {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: $primary;
+    display: inline-block;
+    border-bottom: 2px solid $primary;
+    padding-bottom: 0.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .author-photo-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    @include media-breakpoint-up(lg) {
+      display: block;
+      position: relative;
+      margin-bottom: 0;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: 10px;
+        bottom: 10px;
+        border: 2px solid $beige-dark;
+        z-index: 0;
+      }
+    }
+
+    img {
+      display: block;
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 50%;
+      filter: grayscale(20%) contrast(1.05);
+      box-shadow: 0 8px 24px rgba(#0f1e32, 0.14);
+
+      @include media-breakpoint-up(lg) {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        border-radius: 0;
+        position: relative;
+        z-index: 1;
+      }
     }
   }
-  @include media-breakpoint-down(md) {
-    .asier-picture{
-      text-align: center;
-    }
+
+  .author-name {
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    color: $secondary;
+    margin-bottom: 0.2rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
   }
 
-  h4{
-    margin-bottom: $space/2;
-    color: $gray-600;
-    text-align: center;
+  .author-role {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba($secondary, 0.45);
+    margin-bottom: 1.75rem;
   }
-  p{
-    font-size: $font-size-base/1.4
+
+  p {
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: rgba($black, 0.68);
+    margin-bottom: 0.9rem;
+    max-width: 60ch;
   }
-  p.authorLinks{
-    color: $gray-600;
-    a{
-      margin-right: 4px;
-      text-decoration: none;
+
+  .author-links {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+
+    .link-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba($secondary, 0.5);
+      margin-right: 0.25rem;
+    }
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid rgba($secondary, 0.22);
+      color: $secondary;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+
+      svg { width: 15px; height: 15px; }
+
+      &:hover {
+        background: $secondary;
+        border-color: $secondary;
+        color: #fff;
+      }
     }
   }
 }

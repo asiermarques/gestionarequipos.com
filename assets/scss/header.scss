@@ -1,40 +1,234 @@
-header#presentation {
+// ─── Header & Navigation — Mobile First ───────────────────────────────────────
+
+// Hide old Bootstrap nav remnants
+header#presentation,
+ul.nav.justify-content-center { display: none !important; }
+
+// ─── Site header ──────────────────────────────────────────────────────────────
+#site-header {
+  position: relative;
+  z-index: 1000;
+  background: rgba($cream, 0.97);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba($secondary, 0.12);
   padding: 0;
-  text-align: center;
-  h1 {
-    font-weight: normal;
-    font-size: $font-size-base;
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 0;
+    gap: 1rem;
+    position: relative;
+  }
+}
+
+// ─── Logo ─────────────────────────────────────────────────────────────────────
+.site-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+  z-index: 10;
+
+  img {
+    height: 40px;
+    width: auto;
+    display: block;
+
+    @include media-breakpoint-up(md) { height: 54px; }
+  }
+}
+
+// ─── Mobile hamburger (CSS only) ──────────────────────────────────────────────
+.nav-toggle-input { display: none; }
+
+.nav-toggle-label {
+  display: none; // hidden on desktop
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 10;
+  flex-shrink: 0;
+
+  span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: $secondary;
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    transform-origin: center;
+  }
+}
+
+// Hamburger → X animation when checked
+.nav-toggle-input:checked ~ .nav-toggle-label {
+  span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+}
+
+// ─── Nav (mobile first) — slide-down dropdown panel ───────────────────────────
+// NOTE: the header uses backdrop-filter, which traps position:fixed descendants
+// inside the header box. So the mobile menu is an absolutely-positioned panel
+// anchored to the bottom of the (positioned) sticky header instead.
+.site-nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: $cream;
+  border-bottom: 1px solid rgba($secondary, 0.12);
+  box-shadow: 0 16px 30px rgba($secondary, 0.1);
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: max-height 0.3s ease, opacity 0.25s ease;
+  z-index: 5;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 0 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  li { width: 100%; }
+
+  a {
+    display: block;
+    padding: 0.9rem 1.5rem;
+    font-size: 1.05rem;
+    font-family: $headings-font-family;
+    font-weight: 700;
     color: $secondary;
-    span{
-      font-weight: normal;
-      display: inline;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    border-bottom: 1px solid rgba($secondary, 0.07);
+    transition: color 0.2s ease, background 0.2s ease;
+
+    &:hover, &.active { color: $primary; background: rgba($primary, 0.05); }
+  }
+
+  .nav-cta {
+    padding: 1rem 1.5rem 0;
+    a {
+      border-bottom: none;
+      background: $primary;
+      color: #fff;
+      text-align: center;
+      padding: 0.85rem 1.5rem;
+      font-family: $font-family-base;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.2s ease;
+
+      &:hover { background: darken($primary, 10%); color: #fff; }
     }
-    @include media-breakpoint-down(sm) {
-      span{
-        display: block;
-        font-size: $font-size-base*1.2;
+  }
+}
+
+// Open state: checkbox reveals dropdown
+.nav-toggle-input:checked ~ .site-nav {
+  max-height: 80vh;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+// ─── Desktop nav ──────────────────────────────────────────────────────────────
+@include media-breakpoint-up(md) {
+  .nav-toggle-label { display: none !important; }
+
+  .site-nav {
+    // Reset mobile dropdown
+    position: static;
+    background: transparent;
+    border-bottom: none;
+    box-shadow: none;
+    overflow: visible;
+    max-height: none;
+    opacity: 1;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+
+    ul {
+      flex-direction: row;
+      align-items: center;
+      gap: 0;
+      width: auto;
+    }
+
+    li { width: auto; text-align: left; }
+    .nav-cta { padding: 0; }
+
+    a {
+      display: inline-block;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.82rem;
+      font-family: $font-family-base;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba($secondary, 0.6);
+      border-bottom: none;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0.9rem;
+        right: 0.9rem;
+        height: 2px;
+        background: $primary;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.22s ease;
+      }
+
+      &:hover {
+        color: $secondary;
+        &::after { transform: scaleX(1); }
+      }
+
+      &.active {
+        color: $primary;
+        &::after { transform: scaleX(1); }
       }
     }
-  }
-  a.logo{
-    img{
-      width: 400px;
-      height: auto;
+
+    .nav-cta a {
+      display: inline-block;
+      margin-top: 0;
+      background: $primary;
+      color: #fff;
+      padding: 0.45rem 1.2rem;
+      margin-left: 0.5rem;
+      font-size: 0.78rem;
+      font-family: $font-family-base;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      transition: background 0.2s ease;
+
+      &::after { display: none; }
+      &:hover { background: darken($primary, 10%); color: #fff; }
     }
   }
-  background: #fff;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, $white, #fff);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, $white, #fff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-ul.nav{
-  flex-direction: unset!important;
-  text-align: justify;
-  @include media-breakpoint-down(sm) {
-    flex-direction: column!important;
-    text-align: center;
-  }
-  a.active{
-    border-bottom: 2px solid $primary;
-    color: $secondary;
-  }
+
+// Show hamburger on mobile
+@include media-breakpoint-down(md) {
+  .nav-toggle-label { display: flex; }
 }

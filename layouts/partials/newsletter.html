@@ -1,23 +1,16 @@
 <section id="newsletter">
     <div class="container">
-        <a title="Newsletter gestionar equipos" href="https://newsletter.gestionarequipos.com/">
-            <div class="card" style="max-width: 100%;">
-                <div class="row g-0">
-                    <div class="col-md-4 logo">
-                        {{ with resources.Get "img/logo_social.png" }}
-                        {{ with .Resize (printf "%dx webp q70 lanczos" .Width) }}
-                        <img src="{{.Permalink}}" class="img-fluid rounded-start">
-                        {{end}}
-                        {{end}}
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">La newsletter</h5>
-                            <p class="card-text">Gestion de equipos en la práctica.<br><small>Artículos, recursos e ideas para la gestión de equipos</small></p>
-                        </div>
-                    </div>
-                </div>
+        <div class="newsletter-inner">
+            <div class="newsletter-content">
+                <span class="newsletter-label">Newsletter</span>
+                <h3>Gestión de equipos en la práctica</h3>
+                <p>Artículos, recursos e ideas para líderes de equipos. Sin ruido, directo al grano.</p>
             </div>
-        </a>
+            <div class="newsletter-cta">
+                <a href="https://newsletter.gestionarequipos.com/" title="Newsletter Gestionar Equipos">
+                    Suscribirse →
+                </a>
+            </div>
+        </div>
     </div>
 </section>
