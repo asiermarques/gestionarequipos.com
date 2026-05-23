@@ -1,0 +1,28 @@
+# Gestionar Equipos
+
+> Sitio en español sobre gestión de equipos de alto rendimiento, creado por Asier Marqués. Reúne una biblioteca curada de recursos (libros) sobre liderazgo y management, y presenta el libro "Efectivos", en preparación.
+
+Autor: Asier Marqués — líder de equipos, fundador y autor, con cerca de dos décadas dirigiendo equipos y proyectos tecnológicos. Más sobre él: https://asiermarques.com
+
+El libro "Efectivos" (subtítulo: "Principios y herramientas para gestionar equipos de alto rendimiento") es una guía práctica basada en experiencia real. Trata gestión de personas, gestión del equipo, gestión del trabajo y cultura de equipo. Disponible en 2026.
+
+Idioma: español. Todo el contenido es original de Asier Marqués salvo las reseñas, que comentan libros de terceros.
+
+## Páginas principales
+
+- [Inicio — el libro Efectivos y el autor](https://gestionarequipos.com/): Presentación del libro "Efectivos" de Asier Marqués y biografía del autor.
+- [Biblioteca de recursos](https://gestionarequipos.com/recursos/): Reseñas curadas de libros recomendados sobre gestión de equipos y liderazgo.
+
+## Recursos destacados (reseñas de libros)
+
+- [Drive — Daniel H. Pink](https://gestionarequipos.com/recursos/drive/): Motivación intrínseca: autonomía, maestría y propósito.
+- [Radical Candor — Kim Scott](https://gestionarequipos.com/recursos/radical-candor/): Feedback directo desde el cuidado personal.
+- [The Manager's Path — Camille Fournier](https://gestionarequipos.com/recursos/the-managers-path/): Trayectoria de liderazgo en ingeniería.
+- [Turn the Ship Around! — David Marquet](https://gestionarequipos.com/recursos/turn-the-ship-around/): Liderazgo basado en intención y autonomía.
+- [Management 3.0 — Jurgen Appelo](https://gestionarequipos.com/recursos/management-30/): Gestión ágil de equipos y organizaciones.
+
+## Contacto
+
+- LinkedIn: https://linkedin.com/in/asier
+- Bluesky: https://bsky.app/profile/asiermarques.com
+- Newsletter: https://newsletter.gestionarequipos.com/

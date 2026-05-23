@@ -1,6 +1,25 @@
 baseURL = 'https://gestionarequipos.com/'
-languageCode = 'es'
+languageCode = 'es-ES'
 title = "Gestionar Equipos"
 
 [params]
-description = 'Recursos e ideas sobre gestión de equipos en español'
+description = 'Recursos, ideas y un libro sobre gestión de equipos de alto rendimiento en español, por Asier Marqués.'
+author = 'Asier Marqués'
+authorRole = 'Líder de equipos, fundador y autor'
+keywords = ['gestión de equipos', 'liderazgo', 'equipos de alto rendimiento', 'Asier Marqués', 'Efectivos libro', 'management', 'gestionar equipos']
+locale = 'es_ES'
+
+[params.book]
+name = 'Efectivos'
+subtitle = 'Principios y herramientas para gestionar equipos de alto rendimiento'
+description = 'Guía práctica basada en la experiencia real que explora las particularidades de los equipos de alto rendimiento y reúne los principios, herramientas y prácticas necesarias para liderarlos con éxito.'
+inLanguage = 'es'
+
+[params.social]
+bluesky = 'https://bsky.app/profile/asiermarques.com'
+linkedin = 'https://linkedin.com/in/asier'
+website = 'https://asiermarques.com'
+
+[sitemap]
+changefreq = 'weekly'
+priority = 0.5

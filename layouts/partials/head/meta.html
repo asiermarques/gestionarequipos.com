@@ -1,62 +1,82 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-{{ $title := printf "%s | Recursos en español, compartidos por Asier Marqués" .Site.Title }}
-{{ if not (.IsHome) }}{{ $title = printf "%s | %s" .Title $title }}{{ end }}
+{{/* ---- Title ---- */}}
+{{ $brand := .Site.Title }}
+{{ $title := "" }}
+{{ if .IsHome }}
+  {{ $title = printf "%s, el libro de %s sobre gestión de equipos | %s" .Site.Params.book.name .Site.Params.author $brand }}
+{{ else }}
+  {{ $title = printf "%s | %s" .Title $brand }}
+{{ end }}
+
+{{/* ---- Description (page → summary → site default) ---- */}}
 {{ $description := .Site.Params.description }}
-{{ if not (.IsHome)}}{{ $description = .Params.description }}{{ end }}
+{{ if not .IsHome }}
+  {{ if .Params.description }}
+    {{ $description = .Params.description }}
+  {{ else if .Description }}
+    {{ $description = .Description }}
+  {{ else if .Summary }}
+    {{ $description = .Summary | plainify | chomp | truncate 160 }}
+  {{ end }}
+{{ end }}
+{{ $description = $description | plainify | chomp }}
+
+{{/* ---- og:type ---- */}}
+{{ $ogType := "website" }}
+{{ if or (eq .Type "post") (eq .Type "book") (eq .Type "resource") }}{{ $ogType = "article" }}{{ end }}
+
 <title>{{ $title }}</title>
-<link rel="canonical" href="{{ .Permalink }}" />
+<meta name="description" content="{{ $description }}" />
+{{ with .Site.Params.keywords }}<meta name="keywords" content="{{ delimit . ", " }}" />{{ end }}
+<meta name="author" content="{{ .Site.Params.author }}" />
+<link rel="canonical" href="{{ .Permalink }}" itemprop="url" />
+
 {{ with resources.Get "/img/favicon.png" }}
   {{ with .Resize (printf "%dx webp q70 lanczos" .Width) }}
     <link rel="icon" href="{{.RelPermalink}}" />
   {{end}}
 {{end}}
+
+{{/* ---- OpenGraph ---- */}}
+<meta property="og:type" content="{{ $ogType }}" />
+<meta property="og:site_name" content="{{ $brand }}" />
+<meta property="og:locale" content="{{ .Site.Params.locale }}" />
 <meta property="og:title" content="{{ $title }}" />
-<meta name="twitter:title" content="{{ $title }}" />
-<meta itemprop="name" content="{{ $title }}" />
-<meta name="application-name" content="{{ $title }}" />
-<meta property="og:site_name" content="{{ $title }}" />
-
-<meta name="description" content="{{ $description }}" />
-<meta itemprop="description" content="{{ $description }}" />
 <meta property="og:description" content="{{ $description }}" />
-<meta name="twitter:description" content="{{ $description }}" />
-
-<link rel="canonical" href="{{ .Permalink }}" itemprop="url" />
-<meta name="url" content="{{ .Permalink }}" />
-<meta name="twitter:url" content="{{ .Permalink }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
+{{ if not .Lastmod.IsZero }}<meta property="og:updated_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z0700" | safeHTML }}" />{{ end }}
 
-{{ with resources.Get "/img/share.png" }}
-    {{ with .Resize (printf "%dx webp q70 lanczos" .Width) }}
-        <meta name="og:image" content="{{.Permalink}}" />
-        <meta name="twitter:image" content="{{.Permalink}}" />
-        <meta property="og:image:width" content="{{.Width}}" />
-        <meta property="og:image:height" content="{{.Height}}" />
-    {{end}}
-{{end}}
+{{/* ---- Twitter ---- */}}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ $title }}" />
+<meta name="twitter:description" content="{{ $description }}" />
+<meta name="twitter:url" content="{{ .Permalink }}" />
 
+{{/* ---- Share image (per-page cover when available, else site share) ---- */}}
+{{ $shareImg := "" }}
+{{ if .Params.image }}{{ $shareImg = resources.Get .Params.image }}{{ end }}
+{{ if not $shareImg }}{{ $shareImg = resources.Get "/img/share.png" }}{{ end }}
+{{ with $shareImg }}
+  {{ with .Resize (printf "%dx webp q70 lanczos" .Width) }}
+    <meta property="og:image" content="{{ .Permalink }}" />
+    <meta property="og:image:width" content="{{ .Width }}" />
+    <meta property="og:image:height" content="{{ .Height }}" />
+    <meta name="twitter:image" content="{{ .Permalink }}" />
+  {{ end }}
+{{ end }}
+
+{{/* ---- Article metadata ---- */}}
+{{ if eq $ogType "article" }}
+  {{ if not .Date.IsZero }}<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z0700" | safeHTML }}" />{{ end }}
+  <meta property="article:author" content="{{ .Site.Params.author }}" />
+{{ end }}
+
+{{/* ---- Feeds ---- */}}
 <link rel="sitemap" type="application/xml" title="Sitemap" href='{{ "sitemap.xml" | absURL }}' />
-
 {{ with .OutputFormats.Get "RSS" }}
   <link href="{{ .Permalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
-  <link href="{{ .Permalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
 {{ end }}
 
-<meta property="og:updated_time" content={{ .Lastmod.Format "2006-01-02T15:04:05Z0700" | safeHTML }} />
-
-{{ if eq .Type "post" }}
-
-    <meta property="og:type" content="article" />
-    <meta property="og:article:published_time" content={{ .Date.Format "2006-01-02T15:04:05Z0700" | safeHTML }} />
-    <meta property="article:published_time" content={{ .Date.Format "2006-01-02T15:04:05Z0700" | safeHTML }} />
-
-    {{ with .Site.Params.author }}
-    <meta property="og:article:author" content="{{ . }}" />
-    <meta property="article:author" content="{{ . }}" />
-    <meta name="author" content="{{ . }}" />
-    {{ end }}
-{{ end }}
-
-
+{{ partial "head/schema.html" . }}

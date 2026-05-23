@@ -1,0 +1,82 @@
+{{/* JSON-LD structured data — positions Asier Marqués (Person) and the book "Efectivos" (Book). */}}
+{{ $author := .Site.Params.author }}
+{{ $authorId := printf "%s#asier-marques" .Site.BaseURL }}
+{{ $websiteId := printf "%s#website" .Site.BaseURL }}
+
+{{ $sameAs := slice }}
+{{ with .Site.Params.social.linkedin }}{{ $sameAs = $sameAs | append . }}{{ end }}
+{{ with .Site.Params.social.bluesky }}{{ $sameAs = $sameAs | append . }}{{ end }}
+{{ with .Site.Params.social.website }}{{ $sameAs = $sameAs | append . }}{{ end }}
+
+{{ $authorImg := "" }}
+{{ with resources.Get "img/asier.jpeg" }}
+  {{ with .Resize "600x webp q80 lanczos" }}{{ $authorImg = .Permalink }}{{ end }}
+{{ end }}
+
+{{ $person := dict
+  "@type" "Person"
+  "@id" $authorId
+  "name" $author
+  "url" .Site.BaseURL
+  "jobTitle" .Site.Params.authorRole
+  "knowsAbout" (slice "Gestión de equipos" "Liderazgo" "Equipos de alto rendimiento" "Management" "Ingeniería de software")
+  "sameAs" $sameAs
+}}
+{{ if $authorImg }}{{ $person = merge $person (dict "image" $authorImg) }}{{ end }}
+
+{{ $website := dict
+  "@type" "WebSite"
+  "@id" $websiteId
+  "url" .Site.BaseURL
+  "name" .Site.Title
+  "description" .Site.Params.description
+  "inLanguage" "es-ES"
+  "publisher" (dict "@id" $authorId)
+}}
+
+{{ $graph := slice $person $website }}
+
+{{ if .IsHome }}
+  {{ $bookImg := "" }}
+  {{ with resources.Get "img/portada.jpeg" }}
+    {{ with .Resize "600x webp q80 lanczos" }}{{ $bookImg = .Permalink }}{{ end }}
+  {{ end }}
+  {{ $book := dict
+    "@type" "Book"
+    "name" .Site.Params.book.name
+    "alternativeName" (printf "%s. %s" .Site.Params.book.name .Site.Params.book.subtitle)
+    "description" .Site.Params.book.description
+    "inLanguage" .Site.Params.book.inLanguage
+    "author" (dict "@id" $authorId)
+    "about" (slice "Gestión de equipos" "Liderazgo" "Equipos de alto rendimiento")
+    "url" .Site.BaseURL
+  }}
+  {{ if $bookImg }}{{ $book = merge $book (dict "image" $bookImg) }}{{ end }}
+  {{ $graph = $graph | append $book }}
+{{ end }}
+
+{{ if or (eq .Type "book") (eq .Type "resource") }}
+  {{ $resImg := "" }}
+  {{ if .Params.image }}{{ with resources.Get .Params.image }}{{ with .Resize "500x webp q80 lanczos" }}{{ $resImg = .Permalink }}{{ end }}{{ end }}{{ end }}
+  {{ $authors := slice }}
+  {{ range .Params.authors }}{{ $authors = $authors | append (dict "@type" "Person" "name" .) }}{{ end }}
+  {{ $book := dict
+    "@type" "Book"
+    "name" .Title
+    "description" ($.Description | default ($.Summary | plainify | chomp | truncate 200))
+    "url" .Permalink
+  }}
+  {{ if $authors }}{{ $book = merge $book (dict "author" $authors) }}{{ end }}
+  {{ if $resImg }}{{ $book = merge $book (dict "image" $resImg) }}{{ end }}
+  {{ $graph = $graph | append $book }}
+
+  {{ $crumbs := slice
+    (dict "@type" "ListItem" "position" 1 "name" "Inicio" "item" .Site.BaseURL)
+    (dict "@type" "ListItem" "position" 2 "name" "Biblioteca de recursos" "item" (printf "%srecursos/" .Site.BaseURL))
+    (dict "@type" "ListItem" "position" 3 "name" .Title "item" .Permalink)
+  }}
+  {{ $graph = $graph | append (dict "@type" "BreadcrumbList" "itemListElement" $crumbs) }}
+{{ end }}
+
+{{ $ld := dict "@context" "https://schema.org" "@graph" $graph }}
+<script type="application/ld+json">{{ $ld | jsonify (dict "indent" "  ") | safeJS }}</script>
