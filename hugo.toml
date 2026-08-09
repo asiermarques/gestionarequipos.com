@@ -18,6 +18,10 @@ inLanguage = 'es'
 # Log de actualizaciones del libro. La primera entrada (más reciente) se muestra
 # como resumen; el resto se despliega al hacer click. Añade nuevas arriba.
 [[params.book.updates]]
+date = '07.2026'
+text = '98% escrito — disponible en 2026.'
+
+[[params.book.updates]]
 date = '05.2026'
 text = '82% escrito — disponible en 2026.'
 
