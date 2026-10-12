@@ -3,10 +3,12 @@ $black:              #1a1a1a;
 $primary:            #aa4c26;   // terracotta
 $secondary:          #1B2E4B;   // dark navy
 $white:              #f7f6f7;   // off-white
-$beige:              #eadec3;
-$beige-dark:         #d4c5a3;
-$cream:              #faf8f4;
-$navy-deep:          #0f1e32;
+$tile:               #ecdad2;   // cerámica rosada de las piezas del tangram (portada)
+$tile-dark:          #d6bcaf;   // cara en sombra de la pieza / bordes sobre tile
+$paper:              #fdfcfb;   // blanco de la portada (hero)
+$cream:              #faf8f5;
+$navy-cover:         #0b3a5e;   // azul tinta del título de la portada
+$navy-deep:          #0a2238;
 $terracotta-light:   #c8694a;
 $terracotta-pale:    #f3e8e2;
 
@@ -17,8 +19,8 @@ $radius:             0;
 
 $font-family-base:        "Mulish", sans-serif;
 $headings-font-family:    "Aleo", serif;
-$font-display:            "Bebas Neue", "Mulish", sans-serif;   // título portada
-$font-serif-cover:        "Cormorant Garamond", Georgia, serif; // subtítulo + autor portada
+$font-display:            "Mulish", sans-serif;                 // título portada (weight 900, eco de Avenir Black)
+$font-serif-cover:        "Crimson Pro", Georgia, serif;        // subtítulo portada (eco de Minion Pro)
 $headings-font-weight:    700;
 $headings-line-height:    1.15;
 $line-height-base:        1.75;

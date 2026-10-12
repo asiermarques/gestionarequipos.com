@@ -1,74 +1,20 @@
 // ─── Hero / Book Section — Mobile First ───────────────────────────────────────
-// Rediseño basado en la portada del libro: campo navy profundo, título Bebas Neue
-// en terracota, subtítulo serif (Cormorant) y un abanico de sombras largas que
-// evoca los obeliscos de la cubierta.
+// Rediseño basado en la portada (opción 01): papel blanco, título en Mulish Black
+// azul tinta (eco de Avenir Black), subtítulo serif Crimson Pro (eco de Minion)
+// y el rosa cerámico de las piezas como color de apoyo.
 section#libro {
   position: relative;
   overflow: hidden;
-  padding: 3.5rem 0 4rem;
-  color: $cream;
-  background:
-    radial-gradient(125% 100% at 50% -10%, #1c3354 0%, $secondary 38%, $navy-deep 100%);
+  padding: 3rem 0 4rem;
+  color: $black;
+  background: $paper;
+  border-bottom: 1px solid rgba($navy-cover, 0.08);
 
   @include media-breakpoint-up(lg) {
     display: flex;
     align-items: center;
     min-height: calc(100svh - 81px); // 81px ≈ navbar sticky con logo grande de home
     padding: 4rem 0 6rem;
-  }
-
-  // ─── Abanico de sombras largas (motivo central de la portada) ──────
-  // Cuñas que irradian desde el centro-superior hacia abajo, alternando
-  // luz navy tenue y vacío; la cuña central se tiñe de terracota (el que destaca).
-  .hero-rays {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    background:
-      conic-gradient(from 168deg at 50% -8%,
-        transparent 0deg,
-        rgba($primary, 0.10) 11deg,
-        transparent 12deg,
-        rgba(#fff, 0.035) 15deg,
-        transparent 17deg,
-        rgba(#fff, 0.05) 21deg,
-        transparent 23deg,
-        rgba($primary, 0.16) 24deg,   // haz central terracota
-        transparent 26deg,
-        rgba(#fff, 0.05) 29deg,
-        transparent 31deg,
-        rgba(#fff, 0.035) 35deg,
-        transparent 37deg,
-        rgba($primary, 0.10) 41deg,
-        transparent 52deg);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 28%, #000 78%, transparent 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, #000 28%, #000 78%, transparent 100%);
-  }
-
-  // Halo cálido difuso tras la portada (la luz del obelisco que destaca)
-  .hero-glow {
-    position: absolute;
-    top: 42%;
-    right: -8%;
-    width: 64vw;
-    max-width: 760px;
-    aspect-ratio: 1;
-    transform: translateY(-50%);
-    background: radial-gradient(circle, rgba($terracotta-light, 0.22) 0%, rgba($primary, 0.08) 35%, rgba($primary, 0) 68%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  // Grano sutil: textura de papel en la oscuridad
-  .hero-grain {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.4;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
   }
 
   .container { position: relative; z-index: 1; }
@@ -80,61 +26,45 @@ section#libro {
     font-weight: 800;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: $beige;
-    border-bottom: 2px solid rgba($beige, 0.5);
+    color: $primary;
+    border-bottom: 2px solid $primary;
     padding-bottom: 0.25rem;
     margin-bottom: 1.5rem;
   }
 
-  // ─── Título: Bebas Neue terracota, como en la cubierta ─────────────
+  // ─── Título: Mulish Black azul tinta, como en la cubierta ──────────
   .hero-title {
-    margin: 0 0 1.25rem;
-    line-height: 0.82;
+    margin: 0 0 1rem;
+    font-family: $font-display;
+    font-weight: 900;
+    font-size: clamp(3.1rem, 14.5vw, 7.75rem);
+    line-height: 0.9;
+    letter-spacing: 0.005em;
+    text-transform: uppercase;
+    color: $navy-cover;
 
-    @include media-breakpoint-up(lg) {
-      margin-bottom: 0.75rem;
-    }
-
-    .hero-title-name {
-      display: block;
-      font-family: $font-display;
-      font-weight: 400;
-      font-size: clamp(4.5rem, 17vw, 11rem);
-      color: $primary;
-      letter-spacing: 0.01em;
-      text-transform: uppercase;
-      text-shadow: 0 2px 30px rgba($primary, 0.25);
-    }
+    @include media-breakpoint-up(lg) { margin-bottom: 1.25rem; }
   }
 
-  // ─── Subtítulo: una sola frase serif homogénea (voz de la cubierta) ─
-  // Toda la frase en Cormorant italic; "gestionar equipos" se distingue
-  // únicamente por color (terracota), nunca por otra tipografía o peso.
+  // ─── Subtítulo serif (voz de la cubierta) ──────────────────────────
   .hero-subtitle {
     margin: 0 0 2rem;
-    max-width: none;
     font-family: $font-serif-cover;
-    font-weight: 500;
-    font-style: italic;
-    font-size: clamp(1.4rem, 6vw, 1.75rem);
-    line-height: 1.45;
-    color: rgba($cream, 0.9);
+    font-weight: 400;
+    font-size: clamp(1.35rem, 5.4vw, 1.7rem);
+    line-height: 1.35;
+    color: $navy-cover;
 
-    .sub-over,
-    .sub-main,
-    .sub-under {
-      display: inline;
-    }
-
-    .sub-main {
-      color: $terracotta-light;
+    em {
+      font-style: italic;
+      font-weight: 500;
+      color: $primary;
     }
 
     @include media-breakpoint-up(lg) {
-      max-width: 36rem;
-      margin-bottom: 2.75rem;
-      font-size: 2.2rem;
-      line-height: 1.45;
+      max-width: 32rem;
+      margin-bottom: 2.5rem;
+      font-size: 2.05rem;
     }
   }
 
@@ -142,15 +72,17 @@ section#libro {
     display: inline-flex;
     flex-direction: column;
     gap: 0.35rem;
-    background: rgba(#fff, 0.05);
-    border: 1px solid rgba($beige, 0.22);
+    background: rgba(#fff, 0.85);
+    border: 1px solid $tile-dark;
+    border-left: 3px solid $primary;
     border-radius: 6px;
     padding: 0.75rem 1rem;
     font-size: 0.82rem;
     font-weight: 500;
-    color: rgba($cream, 0.9);
+    color: $navy-cover;
     line-height: 1.5;
     margin-bottom: 1.75rem;
+    box-shadow: 0 8px 22px rgba($navy-cover, 0.06);
 
     @include media-breakpoint-up(lg) {
       display: flex;
@@ -166,7 +98,7 @@ section#libro {
 
     .badge-subscribe {
       padding-left: calc(8px + 0.6rem);
-      color: rgba($cream, 0.72);
+      color: rgba($black, 0.66);
     }
 
     .badge-dot {
@@ -174,18 +106,17 @@ section#libro {
       height: 8px;
       border-radius: 50%;
       background: $primary;
-      box-shadow: 0 0 0 0 rgba($primary, 0.55);
       flex-shrink: 0;
       margin-top: 0.35rem;
       animation: pulse 2s infinite;
     }
 
     a {
-      color: $terracotta-light;
+      color: $primary;
       font-weight: 700;
       text-decoration: underline;
       text-underline-offset: 2px;
-      &:hover { color: lighten($terracotta-light, 8%); }
+      &:hover { color: darken($primary, 10%); }
     }
 
     .update-log {
@@ -204,8 +135,8 @@ section#libro {
         width: 0.5rem;
         height: 0.5rem;
         margin-left: auto;
-        border-right: 1.5px solid rgba($cream, 0.6);
-        border-bottom: 1.5px solid rgba($cream, 0.6);
+        border-right: 1.5px solid rgba($navy-cover, 0.5);
+        border-bottom: 1.5px solid rgba($navy-cover, 0.5);
         transform: rotate(45deg);
         transition: transform 0.25s ease;
         flex-shrink: 0;
@@ -217,7 +148,7 @@ section#libro {
         list-style: none;
         margin: 0.75rem 0 0;
         padding: 0.75rem 0 0;
-        border-top: 1px solid rgba($beige, 0.18);
+        border-top: 1px solid $tile;
         display: flex;
         flex-direction: column;
         gap: 0.6rem;
@@ -230,13 +161,13 @@ section#libro {
           top: 1.2rem;
           bottom: 0.55em;
           width: 1.5px;
-          background: rgba($beige, 0.3);
+          background: $tile-dark;
         }
 
         li {
           position: relative;
           padding-left: calc(8px + 0.6rem);
-          color: rgba($cream, 0.72);
+          color: rgba($black, 0.66);
 
           // Punto del timeline; opaco para tapar la línea a su paso.
           &::before {
@@ -247,13 +178,13 @@ section#libro {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: rgba($beige, 0.55);
+            background: $tile-dark;
           }
         }
 
         .update-date {
           font-weight: 700;
-          color: rgba($beige, 0.85);
+          color: $navy-cover;
           margin-right: 0.4rem;
         }
       }
@@ -263,61 +194,14 @@ section#libro {
   .description {
     font-size: 1rem;
     line-height: 1.8;
-    color: rgba($cream, 0.74);
+    color: rgba($black, 0.74);
     margin-bottom: 1rem;
     max-width: 52ch;
 
-    @include media-breakpoint-up(lg) {
-      max-width: 36rem;
-    }
+    @include media-breakpoint-up(lg) { max-width: 36rem; }
   }
 
-  // ─── Byline del autor con la regla punto-guion de la portada ───────
-  .hero-author {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1.75rem;
-
-    .author-rule {
-      position: relative;
-      width: 3.5rem;
-      height: 1px;
-      background: rgba($primary, 0.65);
-      flex-shrink: 0;
-
-      &::after {
-        content: '';
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        background: $primary;
-        transform: translate(-50%, -50%);
-      }
-    }
-
-    .author-name {
-      font-family: $font-serif-cover;
-      font-weight: 500;
-      font-size: 1.4rem;
-      letter-spacing: 0.04em;
-      color: rgba($cream, 0.92);
-    }
-  }
-
-  // ─── Portada flotando sobre soporte beige tenue ────────────────────
-  .cover-note {
-    display: block;
-    margin-top: 0.5rem;
-    font-family: $font-family-base;
-    font-size: 0.72rem;
-    font-style: italic;
-    color: rgba($cream, 0.4);
-  }
-
+  // ─── Portada como objeto sobre soporte de cerámica ─────────────────
   .cover-col {
     display: flex;
     flex-direction: column;
@@ -329,15 +213,15 @@ section#libro {
       padding-top: 0;
       position: relative;
 
+      // Bloque rosado desplazado tras el libro (objeto sobre soporte)
       &::before {
         content: '';
         position: absolute;
-        top: 1.5rem;
-        right: -0.75rem;
-        bottom: -1.5rem;
-        left: 1.5rem;
-        background: rgba($beige, 0.10);
-        border: 1px solid rgba($beige, 0.22);
+        top: 1.75rem;
+        right: -1rem;
+        bottom: -1.75rem;
+        left: 2rem;
+        background: $tile;
         z-index: 0;
       }
     }
@@ -354,15 +238,15 @@ section#libro {
     img {
       display: block;
       max-width: 100%;
+      width: auto;
       height: auto;
       max-height: 680px;
+      outline: 1px solid rgba($navy-cover, 0.06);
       box-shadow:
-        0 40px 90px rgba(#000, 0.55),
-        0 12px 28px rgba(#000, 0.4);
+        0 36px 70px rgba($navy-cover, 0.22),
+        0 10px 22px rgba($navy-cover, 0.14);
 
-      @include media-breakpoint-up(xl) {
-        max-height: 760px;
-      }
+      @include media-breakpoint-up(xl) { max-height: 740px; }
 
       @include media-breakpoint-down(lg) {
         max-height: 440px;
@@ -391,7 +275,7 @@ section#libro {
       font-weight: 800;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba($cream, 0.5);
+      color: rgba($navy-cover, 0.6);
       transition: color 0.2s ease;
     }
 
@@ -404,7 +288,7 @@ section#libro {
       animation: hero-bob 1.8s ease-in-out infinite;
     }
 
-    &:hover .hero-scroll-text { color: $cream; }
+    &:hover .hero-scroll-text { color: $navy-cover; }
   }
 
   // ─── Entrada escalonada ───────────────────────────────────────────
@@ -413,7 +297,6 @@ section#libro {
   .hero-subtitle,
   .availability-badge,
   .description,
-  .hero-author,
   .cover-col {
     opacity: 0;
     animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -424,7 +307,6 @@ section#libro {
   .hero-subtitle     { animation-delay: 0.28s; }
   .availability-badge{ animation-delay: 0.42s; }
   .description       { animation-delay: 0.52s; }
-  .hero-author       { animation-delay: 0.62s; }
   .cover-col         { animation-delay: 0.30s; }
 }
 
@@ -441,7 +323,7 @@ section#libro {
 @media (prefers-reduced-motion: reduce) {
   section#libro {
     .libro-label, .hero-title, .hero-subtitle,
-    .availability-badge, .description, .hero-author, .cover-col {
+    .availability-badge, .description, .cover-col {
       opacity: 1;
       animation: none;
     }
@@ -449,110 +331,140 @@ section#libro {
   }
 }
 
-// ─── Topics section ───────────────────────────────────────────────────────────
+// ─── Idea + temas: el "mundo" azul tinta de la portada ────────────────────────
 section#libro-contenido {
-  padding: 3.5rem 0;
-  background: $secondary;
-  background: linear-gradient(145deg, #0f1e32 0%, $secondary 60%, #1e3a5f 100%);
-  border-top: 1px solid rgba($beige, 0.12);
   position: relative;
   overflow: hidden;
+  padding: 3.5rem 0;
+  background: $navy-cover;
 
-  @include media-breakpoint-up(lg) {
-    padding: 5rem 0;
-  }
-
-  // Decorative circles
-  &::before {
-    content: '';
-    position: absolute;
-    top: -80px;
-    right: -80px;
-    width: 320px;
-    height: 320px;
-    border-radius: 50%;
-    background: rgba($primary, 0.07);
-    pointer-events: none;
-  }
+  @include media-breakpoint-up(lg) { padding: 5.5rem 0 5rem; }
 
   .section-intro {
-    text-align: center;
     margin-bottom: 2.5rem;
 
-    .section-rule-center {
-      display: block;
-      width: 2.5rem;
-      height: 3px;
-      background: $primary;
-      margin: 0 auto 1.25rem;
-    }
-
-    h4 {
-      font-size: clamp(1rem, 2.5vw, 1.4rem);
-      font-weight: 300;
-      color: rgba(#fff, 0.8);
-      letter-spacing: 0.02em;
-      margin: 0;
-    }
+    @include media-breakpoint-up(lg) { margin-bottom: 3.5rem; }
   }
 
-  .topics-grid {
+  .intro-label {
+    display: inline-block;
+    font-family: $font-family-base;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: $terracotta-light;
+    border-bottom: 2px solid $terracotta-light;
+    padding-bottom: 0.2rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .intro-title {
+    font-family: $font-serif-cover;
+    font-weight: 500;
+    font-size: clamp(1.9rem, 6vw, 2.8rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin: 0;
+  }
+
+  // ─── Índice por partes: como la página de contenidos del libro ─────
+  // Cada parte en una fila: a la izquierda su título y capítulos numerados,
+  // a la derecha las preguntas que responde.
+  .book-part {
     display: grid;
-    grid-template-columns: 1fr; // mobile: single column
-    gap: 1.25rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 2.25rem 0;
+    border-top: 1px solid rgba($tile, 0.22);
 
-    @include media-breakpoint-up(md) {
-      grid-template-columns: repeat(2, 1fr);
+    &:last-child { padding-bottom: 0; }
+
+    @include media-breakpoint-up(lg) {
+      grid-template-columns: 5fr 7fr;
+      gap: 4rem;
+      padding: 3rem 0;
     }
   }
 
-  .topic-block {
-    background: rgba(#fff, 0.04);
-    border: 1px solid rgba(#fff, 0.09);
-    border-top: 3px solid rgba($beige, 0.45);
-    padding: 1.75rem 1.5rem;
-    transition: background 0.25s ease, border-top-color 0.25s ease;
+  .part-head { padding: 0; } // anula el padding global de <header>
 
-    &:hover {
-      background: rgba(#fff, 0.07);
-      border-top-color: $primary; // terracota reservado al estado activo
+  .part-num {
+    display: block;
+    font-family: $font-family-base;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: $terracotta-light;
+    margin-bottom: 0.5rem;
+  }
+
+  .part-title {
+    font-family: $font-serif-cover;
+    font-weight: 500;
+    font-size: clamp(1.6rem, 5vw, 2.1rem);
+    line-height: 1.15;
+    color: #fff;
+    margin: 0 0 1.25rem;
+  }
+
+  .part-chapters {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.85rem;
+      padding: 0.45rem 0;
+      font-size: 0.92rem;
+      line-height: 1.45;
+      color: rgba(#fff, 0.82);
+      border-bottom: 1px dotted rgba($tile, 0.2);
+
+      &:last-child { border-bottom: none; }
     }
 
-    .topic-title {
+    .ch-num {
+      flex-shrink: 0;
+      min-width: 1.9rem;
       font-family: $font-family-base;
-      font-size: 0.68rem;
+      font-size: 0.78rem;
       font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: $primary;
-      margin-bottom: 1.25rem;
-      display: block;
+      font-variant-numeric: tabular-nums;
+      color: $tile;
     }
+  }
 
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+  .part-questions {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
-      li {
-        font-size: 0.875rem;
-        line-height: 1.55;
-        color: rgba(#fff, 0.74);
-        padding: 0.6rem 0 0.6rem 1rem;
-        border-bottom: 1px solid rgba(#fff, 0.06);
-        position: relative;
+    @include media-breakpoint-up(lg) { padding-top: 1.6rem; } // alinea con el título de la parte
 
-        &::before {
-          content: '—';
-          position: absolute;
-          left: 0;
-          color: rgba($beige, 0.6);
-          font-size: 0.75rem;
-          line-height: inherit;
-        }
+    li {
+      position: relative;
+      padding: 0.7rem 0 0.7rem 1.4rem;
+      font-family: $font-serif-cover;
+      font-size: 1.15rem;
+      font-style: italic;
+      line-height: 1.45;
+      color: rgba(#fff, 0.86);
+      border-bottom: 1px solid rgba(#fff, 0.06);
 
-        &:last-child { border-bottom: none; }
+      &::before {
+        content: '—';
+        position: absolute;
+        left: 0;
+        font-style: normal;
+        color: rgba($tile, 0.6);
       }
+
+      &:last-child { border-bottom: none; }
     }
   }
 }

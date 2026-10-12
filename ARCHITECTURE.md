@@ -11,7 +11,7 @@ Hugo site for curating team management and leadership resources (books). Spanish
 | SSG | Hugo 0.161.0 extended (built with ≥ 0.134) |
 | CSS | SCSS → Hugo native compiler (libsass) |
 | CSS framework | Bootstrap 5 (git submodule at `vendor/bootstrap/`) |
-| Fonts | Google Fonts CDN — Aleo + Mulish (whole site); Bebas Neue + Cormorant Garamond (hero "cover" block only) |
+| Fonts | Google Fonts CDN — Aleo + Mulish (whole site); Crimson Pro + Mulish 900 (book "cover" block only) |
 | Images | Hugo image processing → webp, q70, Lanczos |
 | JS | None |
 | Deployment | Netlify (`hugo --minify`) |
@@ -55,7 +55,7 @@ layouts/
       css.html          # SCSS compilation + Google Fonts
     header.html         # Nav bar
     footer.html         # Author bio + social links + slim site footer
-    libro.html          # Homepage hero section
+    libro.html          # Homepage hero + book index (parts, chapters, questions)
     newsletter.html     # Newsletter CTA card
     resources-summary.html  # Latest 4 books (used on homepage)
     resources/
@@ -165,10 +165,12 @@ $black:            #1a1a1a;
 $primary:          #aa4c26;   // terracotta (accent)
 $secondary:        #1B2E4B;   // navy
 $white:            #f7f6f7;
-$beige:            #eadec3;
-$beige-dark:       #d4c5a3;
-$cream:            #faf8f4;    // main background
-$navy-deep:        #0f1e32;
+$tile:             #ecdad2;    // ceramic tangram pieces (cover)
+$tile-dark:        #d6bcaf;
+$paper:            #fdfcfb;    // cover white (hero)
+$cream:            #faf8f5;    // main background
+$navy-cover:       #0b3a5e;    // cover title ink
+$navy-deep:        #0a2238;
 $terracotta-light: #c8694a;
 $terracotta-pale:  #f3e8e2;
 
@@ -176,8 +178,8 @@ $terracotta-pale:  #f3e8e2;
 $font-size-base:       1rem;
 $font-family-base:     "Mulish", sans-serif;
 $headings-font-family: "Aleo", serif;
-$font-display:         "Bebas Neue", sans-serif;        // hero title only
-$font-serif-cover:     "Cormorant Garamond", serif;     // hero subtitle/byline only
+$font-display:         "Mulish", sans-serif;            // hero title only (weight 900)
+$font-serif-cover:     "Crimson Pro", serif;            // book block serif only
 
 // Shape
 $enable-rounded:   false;

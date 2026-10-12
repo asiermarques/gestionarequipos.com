@@ -1,17 +1,13 @@
 <section id="libro">
-    <span class="hero-rays" aria-hidden="true"></span>
-    <span class="hero-glow" aria-hidden="true"></span>
-    <span class="hero-grain" aria-hidden="true"></span>
     <div class="container">
         <div class="row align-items-lg-center hero-row">
             <div class="col-lg-7 col-xl-7">
                 <span class="libro-label">Mi Libro</span>
-                <h2 class="hero-title"><span class="hero-title-name">Efectivos</span></h2>
+                <h2 class="hero-title">Efectivos</h2>
 
                 <p class="hero-subtitle">
-                    <span class="sub-over">Principios y herramientas para</span>
-                    <span class="sub-main">gestionar equipos</span>
-                    <span class="sub-under">de alto rendimiento</span>
+                    Principios y herramientas para
+                    <em>gestionar equipos</em> de alto rendimiento
                 </p>
 
                 {{ with .Site.Params.book.updates }}
@@ -44,19 +40,17 @@
                 <p class="description">Un libro que funciona como guía práctica, basada en la experiencia real, que explora las particularidades de los equipos de alto rendimiento y reúne los principios, herramientas y prácticas necesarias para liderarlos con éxito.</p>
                 <p class="description">Dirigido a quienes lideran equipos y quieren mejorar la forma de acompañar, organizar y hacer crecer a las personas con las que trabajan.</p>
 
-                <span class="cover-note">*portada provisional</span>
-
             </div>
             <div class="col-lg-5 col-xl-5 cover-col">
                 {{ with resources.Get "img/portada.jpeg" }}
                   {{ with .Resize (printf "%dx webp q70 lanczos" .Width) }}
-                     <a href="#" class="cover"><img src="{{.RelPermalink}}" alt="Portada del libro Efectivos, de Asier Marqués"/></a>
+                     <a href="#libro-contenido" class="cover"><img src="{{.RelPermalink}}" width="{{ .Width }}" height="{{ .Height }}" alt="Portada del libro Efectivos, de Asier Marqués"/></a>
                   {{end}}
                 {{end}}
             </div>
         </div>
     </div>
-    <a href="#libro-contenido" class="hero-scroll" aria-label="Ver temas del libro">
+    <a href="#libro-contenido" class="hero-scroll" aria-label="Ver el índice del libro">
         <span class="hero-scroll-text">Descubre el libro</span>
         <span class="hero-scroll-arrow" aria-hidden="true"></span>
     </a>
@@ -65,46 +59,73 @@
 <section id="libro-contenido">
     <div class="container">
         <div class="section-intro">
-            <span class="section-rule-center"></span>
-            <h4>Algunos temas que se tratan en el libro</h4>
+            <span class="intro-label">Contenidos</span>
+            <h3 class="intro-title">Qué encontrarás en el libro</h3>
         </div>
-        <div class="topics-grid">
-            <div class="topic-block">
-                <span class="topic-title">Gestionar personas</span>
-                <ul>
-                    <li>¿Cómo abordar problemas de rendimiento a tiempo sin caer en el micromanagement?</li>
+
+        <div class="book-parts">
+            <article class="book-part">
+                <header class="part-head">
+                    <span class="part-num">Parte I</span>
+                    <h4 class="part-title">Gestión de personas</h4>
+                    <ol class="part-chapters">
+                        <li><span class="ch-num">1.1</span>El feedback</li>
+                        <li><span class="ch-num">1.2</span>El seguimiento</li>
+                        <li><span class="ch-num">1.3</span>Gestión del rendimiento</li>
+                        <li><span class="ch-num">1.4</span>Gestión del crecimiento</li>
+                    </ol>
+                </header>
+                <ul class="part-questions">
                     <li>¿Cómo dar feedback claro y útil antes de que los problemas se acumulen?</li>
+                    <li>¿Cómo establecer expectativas y límites claros sin decir constantemente a las personas cómo hacer su trabajo?</li>
+                    <li>¿Cómo abordar problemas de rendimiento a tiempo sin caer en el micromanagement?</li>
                     <li>¿Cómo ayudar a las personas a crecer sin reducir su desarrollo al siguiente ascenso?</li>
-                    <li>¿Cómo contratar e incorporar a personas que aporten las capacidades que el equipo necesita?</li>
                 </ul>
-            </div>
-            <div class="topic-block">
-                <span class="topic-title">Gestionar el equipo</span>
-                <ul>
+            </article>
+
+            <article class="book-part">
+                <header class="part-head">
+                    <span class="part-num">Parte II</span>
+                    <h4 class="part-title">Gestión del equipo</h4>
+                    <ol class="part-chapters">
+                        <li><span class="ch-num">2.1</span>Contratar</li>
+                        <li><span class="ch-num">2.2</span>Onboarding y offboarding</li>
+                        <li><span class="ch-num">2.3</span>Autonomía, rendimiento y efectividad</li>
+                        <li><span class="ch-num">2.4</span>Aprendizaje</li>
+                        <li><span class="ch-num">2.5</span>Resolución de conflictos</li>
+                        <li><span class="ch-num">2.6</span>Trampas psicológicas</li>
+                        <li><span class="ch-num">2.7</span>Gestión del cambio</li>
+                    </ol>
+                </header>
+                <ul class="part-questions">
+                    <li>¿Cómo contratar e incorporar a personas que aporten las capacidades que el equipo necesita?</li>
                     <li>¿Cómo conseguir que un grupo de personas funcione realmente como un equipo?</li>
+                    <li>¿Cómo dar autonomía sin perder alineamiento ni responsabilidad?</li>
+                    <li>¿Cómo convertir prioridades y objetivos en problemas que el equipo pueda hacer suyos?</li>
                     <li>¿Cómo construir confianza y responsabilidad compartida sin recurrir al control o a la culpa?</li>
                     <li>¿Cómo gestionar los conflictos sin evitarlos ni permitir que deterioren las relaciones?</li>
+                    <li>¿Cómo tomar decisiones cuando no existe consenso y conseguir compromiso después?</li>
                     <li>¿Cómo detectar y corregir dinámicas que reducen la efectividad del equipo?</li>
                 </ul>
-            </div>
-            <div class="topic-block">
-                <span class="topic-title">Dar autonomía</span>
-                <ul>
-                    <li>¿Cómo dar autonomía sin perder alineamiento ni responsabilidad?</li>
-                    <li>¿Cómo establecer expectativas y límites claros sin decir constantemente a las personas cómo hacer su trabajo?</li>
-                    <li>¿Cómo convertir prioridades y objetivos en problemas que el equipo pueda hacer suyos?</li>
-                    <li>¿Cómo tomar decisiones cuando no existe consenso y conseguir compromiso después?</li>
-                </ul>
-            </div>
-            <div class="topic-block">
-                <span class="topic-title">Gestión del trabajo</span>
-                <ul>
+            </article>
+
+            <article class="book-part">
+                <header class="part-head">
+                    <span class="part-num">Parte III</span>
+                    <h4 class="part-title">Gestión del trabajo</h4>
+                    <ol class="part-chapters">
+                        <li><span class="ch-num">3.1</span>Entrega</li>
+                        <li><span class="ch-num">3.2</span>Mantenimiento y prevención de incidentes</li>
+                        <li><span class="ch-num">3.3</span>Gestión de incidentes</li>
+                    </ol>
+                </header>
+                <ul class="part-questions">
                     <li>¿Cómo organizar el trabajo para que el equipo avance sin depender continuamente de su mánager?</li>
                     <li>¿Cómo equilibrar el trabajo nuevo con el mantenimiento y la prevención de problemas?</li>
                     <li>¿Cómo gestionar un incidente con rapidez y claridad sin caer en la búsqueda de culpables?</li>
                     <li>¿Cómo aprender de errores e incidentes para reducir la probabilidad de que se repitan?</li>
                 </ul>
-            </div>
+            </article>
         </div>
     </div>
 </section>

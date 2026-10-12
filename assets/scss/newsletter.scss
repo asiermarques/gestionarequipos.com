@@ -23,17 +23,6 @@
       padding: 2.5rem 3rem;
       gap: 2.5rem;
     }
-
-    &::after {
-      content: '✉';
-      position: absolute;
-      right: 1.5rem;
-      bottom: -0.75rem;
-      font-size: 6rem;
-      color: rgba(#fff, 0.04);
-      pointer-events: none;
-      line-height: 1;
-    }
   }
 
   .newsletter-label {
